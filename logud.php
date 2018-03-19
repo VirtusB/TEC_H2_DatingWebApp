@@ -8,7 +8,7 @@ $user = new User();
 
 $user->logout();
 
-Redirect::to('forside');
+Redirect::to('./');
 
 ?>
 

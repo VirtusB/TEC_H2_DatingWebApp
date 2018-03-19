@@ -4,8 +4,14 @@ body {
     flex-direction: column;
 }
 
+.theme-div {
+    padding: 0 0.75rem 0 0 !important;
+}
+
 main {
     flex: 1 0 auto;
+    margin: 0 3% 0 3%;
+    z-index: 9999;
 }
 
 .footer-logo {
@@ -18,10 +24,20 @@ main {
     transform: translateY(25%);
 }
 
+@media only screen and (min-width: 992px) {
+a.brand-logo {
+    margin: 0 0 0 3% !important;
+}
+body > div.navbar-fixed > nav > div > ul {
+    margin-right: 3%;
+}
+}
+
 div.row.login-row, div.row.register-row, div.row.update-information-row, div.row.change-password-row {
     margin: 0 auto;
     width: 50%;
     margin-top: 10%;
+    padding-bottom: 5%;
 }
 
 .remember-paragraph {

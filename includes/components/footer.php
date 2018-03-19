@@ -6,7 +6,7 @@
               <!-- <p class="grey-text text-lighten-4"></p> -->
               <img class="footer-logo" src="images/heart.png">
             </div>
-            <div class="col s6 right-footer-side">
+            <div class="col s4 right-footer-side">
               <h5 class="white-text footer-title">Links</h5>
               <ul class="footer-links-list">
                     <li>
@@ -23,6 +23,16 @@
                         </li>
               </ul>
             </div>
+            <div class="col s2 right-footer-side">
+                    <h5 class="white-text footer-title">Tema</h5>
+                    <div class="input-field col s12 theme-div">
+                            <select id="theme-select">
+                              <option value="" disabled selected>Vælg</option>
+                              <option value="1">Light</option>
+                              <option value="2">Dark</option>
+                            </select>
+                          </div>
+            </div>
           </div>
         </div>
         <div class="footer-copyright">
@@ -32,4 +42,4 @@
                 </div>
             </div>
       </footer> 
-
+<script src="js/main.js"></script>
