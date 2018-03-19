@@ -1,6 +1,7 @@
 <?php
-include 'includes/components/header.php';
 include_once 'core/init.php';
+include 'includes/components/header.php';
+
 
 $user = new User();
 
@@ -24,7 +25,7 @@ if(Input::exists()) {
                 'min' => 6
             ),
             'password_new_again' => array(
-                'name' => 'Nye adgangskode igen',
+                'name' => 'Bekræftet adgangskode',
                 'required' => true,
                 'min' => 6,
                 'matches' => 'password_new'
@@ -44,7 +45,7 @@ if(Input::exists()) {
             }
         } else {
             foreach($validation->errors() as $error) {
-                echo $error, '<br>';
+                echo "<p class='form-validation-error'>{$error}</p>";
             }
         }
     }
@@ -52,25 +53,34 @@ if(Input::exists()) {
 
 ?>
 
-<form action="" method="post">
-    <div class="field">
-        <label for="password_current">Nuværende adgangskode</label>
-        <input type="password" name="password_current" id="password_current">
+<div class="row change-password-row">
+    <form action="" method="POST" class="col s12">
+    <div class="row">
+    <div class="input-field col s12">
+      <input id="password_current" id="password_current" name="password_current" autocomplete="off" type="password" class="validate">
+      <label for="password_current">Nuværende adgangskode</label>
     </div>
+  </div>
 
-    <div class="field">
-        <label for="password_new">Nye adgangskode</label>
-        <input type="password" name="password_new" id="password_new">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password_new" id="password_new" name="password_new" autocomplete="off" type="password" class="validate">
+      <label for="password_new">Nye adgangskode</label>
     </div>
+  </div>
 
-    <div class="field">
-        <label for="password_new_again">Nye adgangskode igen</label>
-        <input type="password" name="password_new_again" id="password_new_again">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password_new_again" id="password_new_again" name="password_new_again" autocomplete="off" type="password" class="validate">
+      <label for="password_new_again">Bekræft adgangskode</label>
     </div>
-
-    <input type="submit" value="Opdater">
+  </div>
+      
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-</form>
+    <input class="btn btn-left-margin" type="submit" value="Opdater"> 
+      
+    </form>
+  </div>
 
 </body>
 </html>

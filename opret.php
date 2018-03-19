@@ -1,6 +1,7 @@
 <?php
-include 'includes/components/header.php';
 require_once 'core/init.php';
+include 'includes/components/header.php';
+
 
 if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
@@ -51,7 +52,7 @@ if (Input::exists()) {
             }
         } else {
             foreach ($validation->errors() as $error) {
-                echo $error . '<br>';
+                echo "<p class='form-validation-error'>{$error}</p>";
             }
         }
     }
@@ -59,28 +60,42 @@ if (Input::exists()) {
 }
 ?>
 
-<form action="" method="POST">
-    <div class="field">
-        <label for="username">Brugernavn</label>
-        <input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off">
+<div class="row register-row">
+    <form action="" method="POST" class="col s12">
+    <div class="row">
+    <div class="input-field col s12">
+      <input id="username" name="username" autocomplete="off" type="text" class="validate" value="<?php echo escape(Input::get('username')); ?>">
+      <label for="username">Brugernavn</label>
     </div>
-    <div class="field">
-        <label for="password">Vælg en adgangskode</label>
-        <input type="password" name="password" id="password">
-    </div>
-    <div class="field">
-        <label for="password_again">Bekræft adgangskode</label>
-        <input type="password" name="password_again" id="password_again">
-    </div>
+  </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" class="validate" autocomplete="off">
+          <label for="password">Vælg en adgangskode</label>
+        </div>
+      </div>
 
-    <div class="field">
-    <label for="name">Dit fulde navn</label>
-        <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>">
-    </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password_again" name="password_again" class="validate" type="password" autocomplete="off">
+          <label for="password_again">Bekræft adgangskode</label>
+        </div>
+      </div>
 
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Opret">
-</form>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" name="name" type="text" class="validate" autocomplete="off" value="<?php echo escape(Input::get('name')); ?>">
+          <label for="name">Dit fulde navn</label>
+        </div>
+      </div>
+
+      <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+    <input class="btn btn-left-margin" type="submit" value="Opret">
+     
+      
+    </form>
+  </div>
 
 
 </body>

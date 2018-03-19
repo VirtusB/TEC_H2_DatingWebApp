@@ -1,6 +1,7 @@
 <?php
-include 'includes/components/header.php';
 require_once 'core/init.php';
+include 'includes/components/header.php';
+
 
 $user = new User();
 
@@ -33,7 +34,7 @@ if(Input::exists()) {
             }
         } else {
             foreach($validation->errors() as $error) {
-                echo $error, '<br>';
+                echo "<p class='form-validation-error'>{$error}</p>";
             }
         }
     }
@@ -41,15 +42,20 @@ if(Input::exists()) {
 
 ?>
 
-<form action="" method="post">
-    <div class="field">
-        <label for="name">Navn</label>
-        <input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
-
-        <input type="submit" value="Opdater">
-        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+<div class="row update-information-row">
+    <form action="" method="POST" class="col s12">
+    <div class="row">
+    <div class="input-field col s12">
+      <input id="name" name="name" autocomplete="off" type="text" class="validate" value="<?php echo escape($user->data()->name); ?>">
+      <label for="name">Brugernavn</label>
     </div>
-</form>
+  </div>
+      
+    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+    <input class="btn btn-left-margin" type="submit" value="Opdater"> 
+      
+    </form>
+  </div>
 
 </body>
 </html>

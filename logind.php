@@ -1,6 +1,7 @@
 <?php
-include 'includes/components/header.php';
 require_once 'core/init.php';
+include 'includes/components/header.php';
+
 
 if(Input::exists()) {
     if(Token::check(Input::get('token'))) {
@@ -24,38 +25,48 @@ if(Input::exists()) {
             $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login) {
-                Redirect::to('forside');
+                Redirect::to('./');
             } else {
                 echo 'Fejl ved login';
             }
         } else {
             foreach($validation->errors() as $error) {
-                echo $error, '<br>';
+                echo "<p class='form-validation-error'>{$error}</p>";
             }
         }
     }
 }
 ?>
-<form action="" method="POST">
-    <div class="field">
-        <label for="username">Brugernavn</label>
-        <input type="text" name="username" id="username" autocomplete="off">
-    </div>
 
-    <div class="field">
-        <label for="password">Adgangskode</label>
-        <input type="password" name="password" id="password" autocomplete="off">
-    </div>
 
-    <div class="field">
-        <label for="remember">
-            <input type="checkbox" name="remember" id="remember"> Husk mig
-        </label>
-    </div>
 
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Log ind">
-</form>
+<div class="row login-row">
+    <form action="" method="POST" class="col s12">
+    <div class="row">
+    <div class="input-field col s12">
+      <input id="username" name="username" autocomplete="off" type="text" class="validate">
+      <label for="username">Brugernavn</label>
+    </div>
+  </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" autocomplete="off" class="validate">
+          <label for="password">Adgangskode</label>
+        </div>
+        <p class="remember-paragraph">
+            <input type="checkbox" name="remember" id="remember" />
+            <label for="remember">Husk mig</label>
+        </p>
+      </div>
+
+      <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+    <input class="btn btn-left-margin" type="submit" value="Log ind">
+     
+      
+    </form>
+  </div>
+
 
 </body>
 </html>

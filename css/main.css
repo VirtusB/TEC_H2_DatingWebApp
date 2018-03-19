@@ -1,0 +1,13 @@
+div.row.login-row, div.row.register-row, div.row.update-information-row, div.row.change-password-row {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 10%;
+}
+
+.remember-paragraph {
+    padding: 0 .75rem;
+}
+
+.btn-left-margin {
+    margin: 0 0 0 0.75rem;
+}

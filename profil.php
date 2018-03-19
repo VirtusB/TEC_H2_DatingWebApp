@@ -1,6 +1,7 @@
 <?php
-include 'includes/components/header.php';
 require_once 'core/init.php';
+include 'includes/components/header.php';
+
 
 if(!$username = Input::get('user')) {
     Redirect::to('forside');

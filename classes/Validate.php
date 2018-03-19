@@ -42,7 +42,7 @@ class Validate {
                         case 'unique':
                             $check = $this->_db->get($rule_value, array($item, '=', $value));
                             if($check->count()) {
-                                $this->addError("{$item} eksisterer allerede");
+                                $this->addError("{$field_name} eksisterer allerede");
                             }
                         break;
                     }

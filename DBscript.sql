@@ -39,7 +39,7 @@ CREATE TABLE UserSession(
     hash NVARCHAR(150)
 )
 
-INSERT INTO groups (groupName) values ('Standard user') 
+INSERT INTO groups (groupName, permissions) values ('Standard user', '{"standard": 1}') 
 INSERT INTO groups (groupName, permissions) values ('Administrator', '{"admin": 1}')
 INSERT INTO Users (username, userpassword, name, joined, usergroup) values ('virtus', '$2y$10$Moic2ANbBqyJJwQ3hJCVU.lvYdUtPH64jyXb99XB39HCYRCR7CAIy', 'virtus opstrup', GETDATE(), 1)
  
