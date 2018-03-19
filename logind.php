@@ -1,4 +1,5 @@
 <?php
+include 'includes/components/header.php';
 require_once 'core/init.php';
 
 if(Input::exists()) {
@@ -7,11 +8,11 @@ if(Input::exists()) {
         $validate = new Validate();
         $validation = $validate->check($_POST, array(
             'username' => array(
-                'name' => 'Username',
+                'name' => 'Brugernavn',
                 'required' => true
             ),
             'password' => array(
-                'name' => 'Password',
+                'name' => 'Adgangskode',
                 'required' => true
             )
         ));
@@ -23,9 +24,9 @@ if(Input::exists()) {
             $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login) {
-                Redirect::to('index.php');
+                Redirect::to('forside');
             } else {
-                echo 'Login failed';
+                echo 'Fejl ved login';
             }
         } else {
             foreach($validation->errors() as $error) {
@@ -37,21 +38,24 @@ if(Input::exists()) {
 ?>
 <form action="" method="POST">
     <div class="field">
-        <label for="username">Username</label>
+        <label for="username">Brugernavn</label>
         <input type="text" name="username" id="username" autocomplete="off">
     </div>
 
     <div class="field">
-        <label for="password">Password</label>
+        <label for="password">Adgangskode</label>
         <input type="password" name="password" id="password" autocomplete="off">
     </div>
 
     <div class="field">
         <label for="remember">
-            <input type="checkbox" name="remember" id="remember"> Remember me
+            <input type="checkbox" name="remember" id="remember"> Husk mig
         </label>
     </div>
 
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Log in">
+    <input type="submit" value="Log ind">
 </form>
+
+</body>
+</html>

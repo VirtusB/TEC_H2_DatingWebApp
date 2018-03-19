@@ -1,4 +1,7 @@
 <?php
+// gør det let at omdirigere 
+// da vi har URL rewriting på, skal det være forside i stedet for forside.php
+// eksempel: Redirect::to('index.php'); eller Redirect::to(404);
 class Redirect {
     public static function to($location = null) {
         if($location) {

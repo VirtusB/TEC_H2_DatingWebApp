@@ -1,10 +1,11 @@
 <?php
+include 'includes/components/header.php';
 require_once 'core/init.php';
 
 $user = new User();
 
 if(!$user->isLoggedIn()) {
-    Redirect::to('index.php');
+    Redirect::to('forside');
 }
 
 if(Input::exists()) {
@@ -12,7 +13,7 @@ if(Input::exists()) {
         $validate = new Validate();
         $validation = $validate->check($_POST, array(
             'name' => array(
-                'name' => 'Full name',
+                'name' => 'Fulde navn',
                 'required' => true,
                 'min' => 2,
                 'max' => 50
@@ -24,8 +25,8 @@ if(Input::exists()) {
                     'name' => Input::get('name')
                 ));
 
-                Session::flash('home', 'Your details have been updated');
-                Redirect::to('index.php');
+                Session::flash('home', 'Dine informationer er blevet opdateret');
+                Redirect::to('forside');
 
             } catch(Exception $e) {
                 die($e->getMessage());
@@ -42,10 +43,13 @@ if(Input::exists()) {
 
 <form action="" method="post">
     <div class="field">
-        <label for="name">Name</label>
+        <label for="name">Navn</label>
         <input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
 
-        <input type="submit" value="Update">
+        <input type="submit" value="Opdater">
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     </div>
 </form>
+
+</body>
+</html>

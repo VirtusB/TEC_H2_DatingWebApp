@@ -1,4 +1,5 @@
 <?php
+// klasse som bruges til bl.a. validering af brugerens indtastninger
 class Validate {
     private $_passed = false,
             $errors = array(),
@@ -11,36 +12,37 @@ class Validate {
     public function check($source, $items = array()) {
         foreach ($items as $item => $rules) {
 
-            $field_name = $rules['name']; 	//Pulls out the name you set in Register.php
-            unset($rules['name']);			//Removes the name from the array so you don't have to loop over it
+            $field_name = $rules['name']; 	//henter det navn man sætter inputtet til at have
+            unset($rules['name']);			//fjerner navnet fra arrayet, så vi ikke behøver at loope over det
 
             foreach ($rules as $rule => $rule_value) {
-                $value = trim($source[$item]);
+                $value = trim($source[$item]); // fjern whitespace
                 $item = escape($item);
 
                 if ($rule === 'required' && empty($value)) {
-                    $this->addError("{$field_name} is required");
+                    $this->addError("{$field_name} er krævet");
                 } else if(!empty($value)) {
                     switch($rule) {
                         case 'min':
                             if(strlen($value) < $rule_value) {
-                                $this->addError("{$field_name} must be a minimum of {$rule_value} characters");
+                                $this->addError("{$field_name} skal være mindst {$rule_value} karakterer");
                             }   
                         break;
                         case 'max':
                         if(strlen($value) > $rule_value) {
-                            $this->addError("{$field_name} must be a maximum of {$rule_value} characters");
+                            $this->addError("{$field_name} skal være maks {$rule_value} karakterer");
                         } 
                         break;
                         case 'matches':
                         if ($value != $source[$rule_value]) {
-                            $this->addError("{$field_name} must match {$rules['matches']}");
+                            //$this->addError("{$field_name} skal matche {$rules['matches']}");
+                            $this->addError("{$field_name} skal matche " . $items[$rule_value]['name']); // giver os mulighed for at tilføje et andet navn til vores inputs                 
                         }
                         break;
                         case 'unique':
                             $check = $this->_db->get($rule_value, array($item, '=', $value));
                             if($check->count()) {
-                                $this->addError("{$item} already exists");
+                                $this->addError("{$item} eksisterer allerede");
                             }
                         break;
                     }

@@ -1,4 +1,6 @@
 <?php
+// database klasse
+// når databasen skal bruges, brug getInstance() - hvis der allerede er en åben forbindelse til databasen, bliver den brugt, ellers bliver en ny forbindelse oprettet.
 class DB {
     private static $_instance = null;
     private $_pdo, 
@@ -16,7 +18,7 @@ class DB {
         }
     }
 
-    // if we've already connected to the database, use that instance
+    // hvis vi allerede er forbundet til DB, brug den forbindelse
     public static function getInstance() {
         if(!isset(self::$_instance)) {
             self::$_instance = new DB();
@@ -24,7 +26,7 @@ class DB {
         return self::$_instance;
     }
 
-    // function that binds parameters to values, secures SQL statements from SQL injection
+    // funktion som binder parametre til værdier, sikrer bl.a. mod SQL injection
     public function query($sql, $params = array()) {
         $this->_error = false; // reset error
         if($this->_query = $this->_pdo->prepare($sql)) {
@@ -42,12 +44,12 @@ class DB {
                 $this->_error = true;
             }
         }
-        return $this; // return current object
+        return $this; // returner nuværende objekt
     }
 
     
     public function action($action, $table, $where = array()) {
-        if(count($where) == 3) { // need field, operator and value
+        if(count($where) == 3) { // field, operator og value er krævet
             $operators = array('=', '>', '<', '>=', '<=');
 
             $field      = $where[0];

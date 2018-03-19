@@ -1,4 +1,5 @@
 <?php
+include 'includes/components/header.php';
 require_once 'core/init.php';
 
 if (Input::exists()) {
@@ -6,25 +7,25 @@ if (Input::exists()) {
         $validate = new Validate();
         $validation = $validate->check($_POST, array(
             'username' => array(
-                'name' => 'Username',
+                'name' => 'Brugernavn',
                 'required' => true,
                 'min' => 2,
                 'max' => 20,
                 'unique' => 'Users',
             ),
             'password' => array(
-                'name' => 'Password',
+                'name' => 'Adgangskode',
                 'required' => true,
                 'min' => 6,
 
             ),
             'password_again' => array(
-                'name' => 'Confirmed password',
+                'name' => 'Bekræftet adgangskode',
                 'required' => true,
                 'matches' => 'password',
             ),
             'name' => array(
-                'name' => 'Full name',
+                'name' => 'Fulde navn',
                 'required' => true,
                 'min' => 2,
                 'max' => 50,
@@ -43,8 +44,8 @@ if (Input::exists()) {
                     'usergroup' => 1
                 ));
 
-                Session::flash('home', 'You have been registered and can now login');
-                Redirect::to('index.php');
+                Session::flash('home', 'Du er blevet registreret og kan nu logge ind');
+                Redirect::to('forside');
             } catch(Exception $e) {
                 die($e->getMessage());
             }
@@ -60,23 +61,27 @@ if (Input::exists()) {
 
 <form action="" method="POST">
     <div class="field">
-        <label for="username">Username</label>
+        <label for="username">Brugernavn</label>
         <input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off">
     </div>
     <div class="field">
-        <label for="password">Choose a password</label>
+        <label for="password">Vælg en adgangskode</label>
         <input type="password" name="password" id="password">
     </div>
     <div class="field">
-        <label for="password_again">Confirm password</label>
+        <label for="password_again">Bekræft adgangskode</label>
         <input type="password" name="password_again" id="password_again">
     </div>
 
     <div class="field">
-    <label for="name">Your full name</label>
+    <label for="name">Dit fulde navn</label>
         <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>">
     </div>
 
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="register">
+    <input type="submit" value="Opret">
 </form>
+
+
+</body>
+</html>
