@@ -40,5 +40,3 @@ $user = new User(); // current user
     </nav>
   </div>
 
-</head>
-<body>

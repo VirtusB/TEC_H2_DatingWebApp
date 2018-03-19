@@ -1,7 +1,9 @@
+
 <?php
 require_once 'core/init.php';
 include 'includes/components/header.php';
 
+echo '<main>';
 
 if(!$username = Input::get('user')) {
     Redirect::to('forside');
@@ -20,6 +22,10 @@ if(!$username = Input::get('user')) {
 }
 
 ?>
+
+</main>
+
+<?php include 'includes/components/footer.php' ?>
 
 </body>
 </html>

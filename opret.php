@@ -2,6 +2,7 @@
 require_once 'core/init.php';
 include 'includes/components/header.php';
 
+echo '<main>';
 
 if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
@@ -97,6 +98,9 @@ if (Input::exists()) {
     </form>
   </div>
 
+  </main>
+
+<?php include 'includes/components/footer.php' ?>
 
 </body>
 </html>
