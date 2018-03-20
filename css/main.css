@@ -8,11 +8,25 @@ body {
     padding: 0 0.75rem 0 0 !important;
 }
 
+.theme-div .caret {
+    color: #fff !important;
+}
+
 main {
     flex: 1 0 auto;
     margin: 0 3% 0 3%;
     z-index: 9999;
 }
+
+.signup-btn {
+    width: 25%;
+}
+
+.row-signup-btn {
+    text-align: center;
+}
+
+
 
 .footer-logo {
     max-width: 147px;
@@ -33,10 +47,17 @@ body > div.navbar-fixed > nav > div > ul {
 }
 }
 
-div.row.login-row, div.row.register-row, div.row.update-information-row, div.row.change-password-row {
+div.row.login-row, div.row.update-information-row, div.row.change-password-row {
     margin: 0 auto;
     width: 50%;
-    margin-top: 10%;
+    margin-top: 5%;
+    padding-bottom: 5%;
+}
+
+div.row.register-row {
+    /* margin: 0 auto; */
+    /* width: 50%; */
+    margin-top: 5%;
     padding-bottom: 5%;
 }
 
