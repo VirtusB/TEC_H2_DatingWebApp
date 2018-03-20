@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="materialize/css/materialize.min.css">
     <script src="js/jquery.js"></script>
     <script src="js/jsCookie.js"></script>
+    <script src="js/functions/resizeEvent.js"></script>
     <script src="materialize/js/materialize.min.js"></script>
     <title>Dating App</title>
 <?php

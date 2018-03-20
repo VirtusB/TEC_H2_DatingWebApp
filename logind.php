@@ -4,44 +4,49 @@ include 'includes/components/header.php';
 
 echo '<main>';
 
-if(Input::exists()) {
-    if(Token::check(Input::get('token'))) {
 
-        $validate = new Validate();
-        $validation = $validate->check($_POST, array(
-            'username' => array(
-                'name' => 'Brugernavn',
-                'required' => true
-            ),
-            'password' => array(
-                'name' => 'Adgangskode',
-                'required' => true
-            )
-        ));
-
-        if($validation->passed()) {
-            $user = new User();
-
-            $remember = (Input::get('remember') === 'on') ? true : false;
-            $login = $user->login(Input::get('username'), Input::get('password'), $remember);
-
-            if($login) {
-                Redirect::to('./');
-            } else {
-                echo 'Fejl ved login';
-            }
-        } else {
-            foreach($validation->errors() as $error) {
-                echo "<p class='form-validation-error'>{$error}</p>";
-            }
-        }
-    }
-}
 ?>
 
 
 
 <div class="row login-row">
+    <div class="div-validation-errors">
+        <?php
+            if(Input::exists()) {
+                if(Token::check(Input::get('token'))) {
+            
+                    $validate = new Validate();
+                    $validation = $validate->check($_POST, array(
+                        'username' => array(
+                            'name' => 'Brugernavn',
+                            'required' => true
+                        ),
+                        'password' => array(
+                            'name' => 'Adgangskode',
+                            'required' => true
+                        )
+                    ));
+            
+                    if($validation->passed()) {
+                        $user = new User();
+            
+                        $remember = (Input::get('remember') === 'on') ? true : false;
+                        $login = $user->login(Input::get('username'), Input::get('password'), $remember);
+            
+                        if($login) {
+                            Redirect::to('./');
+                        } else {
+                            echo 'Fejl ved login';
+                        }
+                    } else {
+                        foreach($validation->errors() as $error) {
+                            echo "<p class='form-validation-error'>{$error}</p>";
+                        }
+                    }
+                }
+            }
+        ?>
+    </div>
     <form action="" method="POST" class="col s12">
     <div class="row">
     <div class="input-field col s12">
