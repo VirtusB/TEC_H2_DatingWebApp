@@ -39,6 +39,11 @@ class Validate {
                             $this->addError("{$field_name} skal matche " . $items[$rule_value]['name']); // giver os mulighed for at tilføje et andet navn til vores inputs                 
                         }
                         break;
+                        case 'validemail':
+                            if(!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                                $this->addError("{$field_name} skal være en korrekt email");
+                            }   
+                        break;
                         case 'unique':
                             $check = $this->_db->get($rule_value, array($item, '=', $value));
                             if($check->count()) {
