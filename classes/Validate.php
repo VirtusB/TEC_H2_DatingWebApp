@@ -44,6 +44,16 @@ class Validate {
                                 $this->addError("{$field_name} skal være en korrekt email");
                             }   
                         break;
+                        case 'zero-int-allowed':
+                            if(!is_numeric($value)) {
+                                $this->addError("{$field_name} er krævet");
+                            }   
+                        break;
+                        case 'disallow-only-numbers':
+                            if(is_numeric($value)) {
+                                $this->addError("{$field_name} må ikke kun indeholde tal");
+                            }   
+                        break;
                         case 'unique':
                             $check = $this->_db->get($rule_value, array($item, '=', $value));
                             if($check->count()) {

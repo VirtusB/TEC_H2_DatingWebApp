@@ -10,6 +10,13 @@ if(!$user->isLoggedIn()) {
     Redirect::to('forside');
 }
 
+
+
+?>
+
+<div class="row change-password-row">
+<div class="div-validation-errors">
+<?php
 if(Input::exists()) {
     if(Token::check(Input::get('token'))) {
         
@@ -21,7 +28,7 @@ if(Input::exists()) {
                 'min' => 6
             ),
             'password_new' => array(
-                'name' => 'nye adgangskode',
+                'name' => 'Nye adgangskode',
                 'required' => true,
                 'min' => 6
             ),
@@ -46,15 +53,13 @@ if(Input::exists()) {
             }
         } else {
             foreach($validation->errors() as $error) {
-                echo "<p class='form-validation-error'>{$error}</p>";
+                echo "<p class='form-validation-error'>{$error}.</p> ";
             }
         }
     }
 }
-
 ?>
-
-<div class="row change-password-row">
+</div>
     <form action="" method="POST" class="col s12">
     <div class="row">
     <div class="input-field col s12">

@@ -40,7 +40,7 @@ echo '<main>';
                         }
                     } else {
                         foreach($validation->errors() as $error) {
-                            echo "<p class='form-validation-error'>{$error}</p>";
+                            echo "<p class='form-validation-error'>{$error}.</p> ";
                         }
                     }
                 }

@@ -10,6 +10,13 @@ if(!$user->isLoggedIn()) {
     Redirect::to('forside');
 }
 
+
+
+?>
+
+<div class="row update-information-row">
+<div class="div-validation-errors">
+<?php
 if(Input::exists()) {
     if(Token::check(Input::get('token'))) {
         $validate = new Validate();
@@ -35,15 +42,13 @@ if(Input::exists()) {
             }
         } else {
             foreach($validation->errors() as $error) {
-                echo "<p class='form-validation-error'>{$error}</p>";
+                echo "<p class='form-validation-error'>{$error}.</p> ";
             }
         }
     }
 }
-
 ?>
-
-<div class="row update-information-row">
+</div>
     <form action="" method="POST" class="col s12">
     <div class="row">
     <div class="input-field col s12">

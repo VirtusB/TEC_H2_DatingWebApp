@@ -15,18 +15,25 @@ body {
 main {
     flex: 1 0 auto;
     margin: 0 3% 0 3%;
-    z-index: 9999;
 }
 
 .signup-btn {
     width: 25%;
 }
 
+
 .row-signup-btn {
     text-align: center;
 }
 
+.div-validation-errors {
+    text-align: center;
+}
 
+.form-validation-error {
+    display: inline-block;
+    color: #ff0000;
+}
 
 .footer-logo {
     max-width: 147px;
