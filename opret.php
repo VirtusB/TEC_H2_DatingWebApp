@@ -141,9 +141,6 @@ if (Input::exists()) {
                     <div class="input-field col s6 offset-m3 birthday-div">
                     <input type="text" id="age" name="age" class="birthday-picker-input validate" value="<?php echo escape(Input::get('age')); ?>">
                     <label for="age">Fødselsdato</label>
-                    <?php
-                                                           
-                    ?>
                     </div>
                 </div>
 
