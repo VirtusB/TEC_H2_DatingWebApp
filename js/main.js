@@ -35,6 +35,7 @@ $(document).ready(function() {
 });
 
 
+// load billede med js
 function readURL(input) {
 
   if (input.files && input.files[0]) {
@@ -74,6 +75,19 @@ $(document).ready(function() {
     readURL(this);
   });
 });
+
+// lav en cookie med profil beskrivelsens værdi og sæt profil beskrivelsens værdi til denne værdi
+// nødvendigt da value="" ikke kunne sættes med php
+$(document).ready(function() {
+ $("#bio_input").val(Cookies.get('bio_input_cookie'));
+
+$("#bio_input").change(function() {
+  Cookies.set('bio_input_cookie', $("#bio_input").val());
+});
+
+});
+
+
 
 
 // test af jquery/javascript validation, kun sat til på username

@@ -157,8 +157,8 @@ if (Input::exists()) {
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field col s12 sex-div">
-                            <select name="sex_select" id="sex-select">
-                                <option value="" disabled="disabled" selected="selected">Køn</option>
+                            <select onchange="saveSex(this.value);" name="sex_select" id="sex-select">
+                                <option value="tom">Køn</option>
                                 <option value="1">Mand</option>
                                 <option value="0">Kvinde</option>
                             </select>
