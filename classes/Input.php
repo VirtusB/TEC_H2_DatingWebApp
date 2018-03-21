@@ -28,6 +28,21 @@ class Input
         return '';
     }
 
+    public static function getImage($value) {
+        if (isset($_FILES[$value]['tmp_name']) && !empty($_FILES[$value]['tmp_name'])) {
+            $fileTmpName = $_FILES[$value]['tmp_name'];
+            $image = file_get_contents($fileTmpName);
+            $encoded_image = base64_encode($image);
+            if (strlen($encoded_image) == 0 || $encoded_image == null) {
+                return false;
+            } else {
+                return (string)$encoded_image;
+            }
+            
+        } 
+        
+    }
+
     public static function getDate($value)
     {
         $noCommas = str_replace(',', '', $value); // fjern kommaer fra datoen
@@ -59,7 +74,7 @@ class Input
         } else if (preg_match('/\bDecember\b/', $withDashes)) {
             $month = str_replace('December', '12', $withDashes);
         }
-
+        
         return date("Y-m-d", strtotime($month));
     }
 

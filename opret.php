@@ -63,6 +63,15 @@ if (Input::exists()) {
             'age' => array(
                 'name' => 'Fødselsdato',
                 'required' => true
+            ),
+            'bio_input' => array(
+                'name' => 'Profil beskrivelse',
+                'required' => true,
+                'min' => 2,
+                'max' => 280
+            ),
+            'img_input' => array(
+                'name' => 'Profil billede'
             )
         ));
 
@@ -81,9 +90,12 @@ if (Input::exists()) {
                     'regionId' => Input::get('region_select'),
                     'city' => Input::get('city'),
                     'countryId' => Input::get('country_select'),
-                    'age' => Input::getDate(Input::get('age'))
+                    'age' => Input::getDate(Input::get('age')),
+                    'profileBio' => Input::get('bio_input'),
+                    'imageFile' => Input::getImage('img_input')
                 ));
 
+                
                 Session::flash('home', 'Du er blevet registreret og kan nu logge ind');
                 Redirect::to('forside');
             } catch (Exception $e) {
@@ -99,7 +111,7 @@ if (Input::exists()) {
 }
 ?>
     </div>
-    <form id="signup-form" action="" method="POST" class="col s12">
+    <form enctype="multipart/form-data" id="signup-form" action="" method="POST" class="col s12">
         <div class="row">
             <div class="col s6">
                 <div class="row">
@@ -125,7 +137,7 @@ if (Input::exists()) {
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="email" name="email" class="validate" type="email" autocomplete="off">
+                        <input id="email" name="email" class="validate" type="email" value="<?php echo escape(Input::get('email')); ?>" autocomplete="off">
                         <label for="email" data-error="Forkert">Email</label>
                     </div>
                 </div>
@@ -137,12 +149,7 @@ if (Input::exists()) {
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s6 offset-m3 birthday-div">
-                    <input type="text" id="age" name="age" class="birthday-picker-input validate" value="<?php echo escape(Input::get('age')); ?>">
-                    <label for="age">Fødselsdato</label>
-                    </div>
-                </div>
+                
 
             </div>
 
@@ -191,8 +198,40 @@ if (Input::exists()) {
                                 ?>
                             </select>
                         </div>
-                    </div>
+                    </div>      
                 </div>
+
+                
+
+        <div class="row">
+          <div class="col s6">        
+           <div class="input-field s12 bio-div">
+            <textarea id="bio_input" name="bio_input" class="materialize-textarea validate" data-length="280" value="<?php echo escape(Input::get('bio_input')); ?>"></textarea>
+            <label id="bio-label" for="bio_input">Beskriv dig selv</label>
+                                </div>
+
+                                <div class="row">
+                                <div class="input-field col s12">
+                                <input type="text" id="age" name="age" class="birthday-picker-input" value="<?php echo escape(Input::get('age')); ?>">
+                    <label for="age">Fødselsdato</label>
+                        </div>
+              </div>
+
+
+          </div>
+          <div class="col s6 profile-img-div">
+                <img id="profile-image" src="images/placeholder.jpg">
+                <br>
+                <!-- <button type="button" id="profile-img-btn" class="btn">Vælg billede</button> -->
+                <input id="img_input" type="file" name="img_input" class="inputfile btn">
+                <label id="label_img" for="img_input">Vælg et billede</label>
+            </div>
+        </div>
+
+  
+
+         
+                
                 
             </div>
 

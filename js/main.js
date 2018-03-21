@@ -20,7 +20,7 @@ $('.birthday-picker-input').pickadate({
   weekdaysShort: ['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'],
   formatSubmit: 'yyyy/dd/mm',
   selectMonths: true, // Creates a dropdown to control month
-  selectYears: 15, // Creates a dropdown of 15 years to control year,
+  selectYears: 50, // Creates a dropdown of 15 years to control year,
   today: 'I dag',
   clear: 'Slet',
   close: 'Ok',
@@ -34,6 +34,48 @@ $(document).ready(function() {
   }, 4000);
 });
 
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    console.log(input.files[0].size);
+
+    var size = input.files[0].size;
+    if (size < 5000) {
+      $(input).val("");
+      size = size/1000;
+      size = size.toFixed(2);
+      alertify.alert('Fejl', `Billedet skal mindst være 5 KB, det valgte billede fylder ${size}KB`, function() {
+        alertify.message("OK");
+      });
+    } else if (size > 1000000) {
+      $(input).val("");
+      size = size/1000000;
+      size = size.toFixed(2);
+      alertify.alert('Fejl', `Billedet er for stort, maks 1 MB, det valgte billede fylder ${size}MB`, function() {
+        alertify.message("OK");
+      });
+    } else {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#profile-image').attr('src', e.target.result);
+      }
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    
+  }
+}
+
+$(document).ready(function() {
+  $("#img_input").change(function() {
+    readURL(this);
+  });
+});
+
+
 // test af jquery/javascript validation, kun sat til på username
 // brug af custom alerts fra alertify.js
 $(document).ready(function() {
@@ -46,7 +88,13 @@ $(document).ready(function() {
       $("#signup-form").submit(function(e) {
         e.preventDefault();
       });
-    }
+    } else if($('#img_input').get(0).files.length === 0) {
+      errorMessage = "Profil billede er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } 
     if (!signupFormValid && errorMessage.length > 0) {
       alertify.alert('Fejl', errorMessage, function() {
         alertify.message("OK");

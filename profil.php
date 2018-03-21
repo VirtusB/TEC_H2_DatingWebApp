@@ -17,6 +17,7 @@ if(!$username = Input::get('user')) {
     ?>
     <h3><?php echo escape($data->username) ?></h3>
     <p>Fulde navn: <?php echo escape($data->name) ?></p>
+    <img src="data:image/jpeg;base64,<?php echo escape($data->imageFile);?>" />
 
     <?php
 }

@@ -99,7 +99,7 @@ CREATE TABLE Users(
 	city nvarchar(50),
 	sex bit,
 	age date,
-	imageFile varbinary(max),
+	imageFile varchar(max),
 	email nvarchar(320),
 	profileBio nvarchar(280),
 	active bit NOT NULL default 1

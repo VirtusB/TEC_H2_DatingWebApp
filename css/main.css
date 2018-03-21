@@ -21,6 +21,15 @@ main {
     width: 25%;
 }
 
+#profile-image {
+    max-height: 300px;
+    max-width: 85%;
+}
+
+.profile-img-div {
+    text-align: center;
+}
+
 
 .row-signup-btn {
     text-align: center;
@@ -74,4 +83,77 @@ div.row.register-row {
 
 .btn-left-margin {
     margin: 0 0 0 0.75rem;
+}
+
+
+
+
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#bio-label {
+    padding: 0 .75rem;
+}
+
+.bio-div {
+    padding: 0 .65rem;
+}
+
+
+.inputfile + label {
+    
+
+    width: 40%;
+    height: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff !important;
+    border-radius: 0px;
+    background-color: #ff5757;
+    display: inline-block;
+    cursor: pointer;
+    cursor: pointer;
+    transition: all 120ms;
+    line-height: 30px !important;
+    vertical-align: middle;
+
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    margin: 0em;
+    font: 400 11px system-ui;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    font-size: 11px;
+    line-height: normal;
+    font-family: system-ui;
+}
+
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
 }

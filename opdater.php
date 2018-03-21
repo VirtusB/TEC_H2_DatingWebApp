@@ -53,7 +53,7 @@ if(Input::exists()) {
     <div class="row">
     <div class="input-field col s12">
       <input id="name" name="name" autocomplete="off" type="text" class="validate" value="<?php echo escape($user->data()->name); ?>">
-      <label for="name">Brugernavn</label>
+      <label for="name">Fulde navn</label>
     </div>
   </div>
       
