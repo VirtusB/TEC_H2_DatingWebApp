@@ -81,7 +81,7 @@ if (Input::exists()) {
                     'regionId' => Input::get('region_select'),
                     'city' => Input::get('city'),
                     'countryId' => Input::get('country_select'),
-                    'age' => ''
+                    'age' => Input::getDate(Input::get('age'))
                 ));
 
                 Session::flash('home', 'Du er blevet registreret og kan nu logge ind');
@@ -142,40 +142,7 @@ if (Input::exists()) {
                     <input type="text" id="age" name="age" class="birthday-picker-input validate" value="<?php echo escape(Input::get('age')); ?>">
                     <label for="age">Fødselsdato</label>
                     <?php
-                        $noCommas = str_replace(',', '', Input::get('age')); // fjern kommaer fra datoen
-                        $withDashes = str_replace(' ', '-', $noCommas); // erstart mellemrum med bindestreg
-                        $month = '';
-
-                        if (preg_match('/\bJanuar\b/',$withDashes)) {
-                            $month = str_replace('Januar', '01', $withDashes);
-                        } else if (preg_match('/\bFebruar\b/',$withDashes)) {
-                            $month = str_replace('Februar', '02', $withDashes);
-                        } else if (preg_match('/\bMarts\b/',$withDashes)) {
-                            $month = str_replace('Marts', '03', $withDashes);
-                        } else if (preg_match('/\bApril\b/',$withDashes)) {
-                            $month = str_replace('April', '04', $withDashes);
-                        } else if (preg_match('/\bMaj\b/',$withDashes)) {
-                            $month = str_replace('Maj', '05', $withDashes);
-                        } else if (preg_match('/\bMarts\b/',$withDashes)) {
-                            $month = str_replace('Juni', '06', $withDashes);
-                        } else if (preg_match('/\bJuli\b/',$withDashes)) {
-                            $month = str_replace('Juli', '07', $withDashes);
-                        } else if (preg_match('/\bAugust\b/',$withDashes)) {
-                            $month = str_replace('August', '08', $withDashes);
-                        } else if (preg_match('/\bSeptember\b/',$withDashes)) {
-                            $month = str_replace('September', '09', $withDashes);
-                        } else if (preg_match('/\bOktober\b/',$withDashes)) {
-                            $month = str_replace('Oktober', '10', $withDashes);
-                        } else if (preg_match('/\bNovember\b/',$withDashes)) {
-                            $month = str_replace('November', '11', $withDashes);
-                        } else if (preg_match('/\bDecember\b/',$withDashes)) {
-                            $month = str_replace('December', '12', $withDashes);
-                        } 
-
-                        //echo $month;
-
-                        $finalDate = date("Y-m-d", strtotime($month));
-                        echo $finalDate;                                   
+                                                           
                     ?>
                     </div>
                 </div>
