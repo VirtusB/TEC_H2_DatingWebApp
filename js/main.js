@@ -27,6 +27,9 @@ $('.birthday-picker-input').pickadate({
   closeOnSelect: false // Close upon selecting a date,
 });
 
+
+
+
 // fejl skal fades out, fade out skal begynde efter 4 sekunder og tage 1600 ms
 $(document).ready(function() {
   setTimeout(function() {
@@ -34,15 +37,26 @@ $(document).ready(function() {
   }, 4000);
 });
 
+
+
+// ubrugt
+// skulle bruges til at loade brugerns billede igen, under oprettelse, ikke muligt
 document.addEventListener('DOMContentLoaded', function() {
-  $('#profile-image').attr('src', localStorage.getItem('profileImg'));
+  //$('#proimg').val(localStorage.getItem('profileImg'));
+
+  //var imgStorage = localStorage.getItem('profileImg');
+
+  if(localStorage.getItem("profileImg") != null) {
+    //$('#profile-image').attr('src', localStorage.getItem('profileImg'));
+  } 
+  
 });
 
 // load billede med js
 function readURL(input) {
 
   if (input.files && input.files[0]) {
-    console.log(input.files[0].size);
+
 
     var size = input.files[0].size;
     if (size < 5000) {
@@ -64,7 +78,7 @@ function readURL(input) {
 
       reader.onload = function(e) {
         $('#profile-image').attr('src', e.target.result);
-        localStorage.setItem('profileImg', e.target.result);
+        //localStorage.setItem('profileImg', e.target.result);
       }
   
       reader.readAsDataURL(input.files[0]);
@@ -73,6 +87,9 @@ function readURL(input) {
     
   }
 }
+
+
+
 
 $(document).ready(function() {
   $("#img_input").change(function() {

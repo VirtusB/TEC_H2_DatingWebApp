@@ -6,6 +6,9 @@ include 'includes/components/header.php';
 echo '<main>';
 
 
+
+
+
 if(Session::exists('home')) {
     echo "<p class='flash-home'>" . Session::flash('home') . "</p>";
 }
@@ -34,6 +37,23 @@ if($user->hasPermission('admin')) {
 </main>
 
 <?php include 'includes/components/footer.php' ?>
+<script type="text/javascript">
+// slet cookies brugs under oprettelse
+if (!document.location.pathname.match(/\opret/)) {
+console.log('ikke opret siden');
+Cookies.remove("sexVal", { path: '/H2_DatingWebApp' }); 
+Cookies.remove("regionVal", { path: '/H2_DatingWebApp' }); 
+Cookies.remove("countryVal", { path: '/H2_DatingWebApp' }); 
+Cookies.remove("bio_input_cookie", { path: '/' }); 
+localStorage.removeItem("profileImg");
+}
+</script>
 </body>
 </html>
 
+<?php
+// setcookie('sexVal', '', time() -1 , '/');
+// setcookie('regionVal', '', time() -1 , '/');
+// setcookie('countryVal', '', time() -1 , '/');
+// setcookie('bio_input_cookie', '', time() -1 , '/');
+?>

@@ -95,17 +95,19 @@ if (Input::exists()) {
                     'age' => Input::getDate(Input::get('age')),
                     'profileBio' => Input::get('bio_input'),
                     'imageFile' => Input::getImage('img_input')
-                ));
-
+                ));        
                 
                 Session::flash('home', 'Du er blevet registreret og kan nu logge ind');
                 Redirect::to('forside');
+                                 
             } catch (Exception $e) {
                 die($e->getMessage());
             }
         } else {
             foreach ($validation->errors() as $error) {
                 echo "<p class='form-validation-error'>{$error}.</p> ";
+                var_dump($_POST);
+                //echo Input::get('data');
             }
         }
     }
@@ -224,7 +226,6 @@ if (Input::exists()) {
           <div class="col s6 profile-img-div">
                 <img id="profile-image" src="images/placeholder.jpg">
                 <br>
-                <!-- <button type="button" id="profile-img-btn" class="btn">Vælg billede</button> -->
                 <input id="img_input" type="file" name="img_input" class="inputfile btn">
                 <label id="label_img" for="img_input">Vælg et billede</label>
 

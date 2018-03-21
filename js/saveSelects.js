@@ -1,3 +1,7 @@
+
+
+
+
 // lav en cookie med profil beskrivelsens værdi og sæt profil beskrivelsens værdi til denne værdi
 // nødvendigt da value="" ikke kunne sættes med php
 $(document).ready(function() {
@@ -56,9 +60,13 @@ function selectEvent(select, cookie) {
     document.body.className = saveclass + ' ' + selectedTheme;
 }
 
+if (document.location.pathname.match(/\opret/)) {
 selectEvent('sex-select', 'sexVal');
 selectEvent('region-select', 'regionVal');
-selectEvent('country-select', 'countryVal');
+selectEvent('country-select', 'countryVal'); 
+}
+
+
 
 // loader cookien
 // document.addEventListener('DOMContentLoaded', function() {
