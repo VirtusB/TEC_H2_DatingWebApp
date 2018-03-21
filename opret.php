@@ -4,6 +4,18 @@ include 'includes/components/header.php';
 
 echo '<main>';
 
+$profileImage = null;
+
+if (!empty($_POST['file'])) {
+    $file = $_POST['file'];
+}
+if (!empty($_FILES['file_upload'])) {
+
+    // process upload, save file somewhere
+
+    $file = $nameOfSavedFile;
+}
+
 ?>
 
 <div class="row register-row">
@@ -103,6 +115,7 @@ if (Input::exists()) {
             }
         } else {
             foreach ($validation->errors() as $error) {
+                var_dump($_FILES);
                 echo "<p class='form-validation-error'>{$error}.</p> ";
             }
         }
@@ -157,7 +170,7 @@ if (Input::exists()) {
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field col s12 sex-div">
-                            <select onchange="saveSex(this.value);" name="sex_select" id="sex-select">
+                            <select onchange="saveSelected(this.value, 'sex-select', 'sexVal');" name="sex_select" id="sex-select">
                                 <option value="tom">Køn</option>
                                 <option value="1">Mand</option>
                                 <option value="0">Kvinde</option>
@@ -166,7 +179,7 @@ if (Input::exists()) {
                     </div>
                     <div class="col s6">
                         <div class="input-field col s12 region-div">
-                            <select name="region_select" id="region-select">
+                            <select onchange="saveSelected(this.value, 'region-select', 'regionVal');" name="region_select" id="region-select">
                                 <option value="" disabled="disabled" selected="selected">Region</option>
                                 <?php
                                     $regions = DB::getInstance()->action('SELECT regionName, regionID', 'Regions', array('1', '=', '1'))->results();
@@ -188,7 +201,7 @@ if (Input::exists()) {
 
                     <div class="col s6">
                         <div class="input-field col s12 country-div">
-                            <select name="country_select" id="country-select">
+                            <select onchange="saveSelected(this.value, 'country-select', 'countryVal');" name="country_select" id="country-select">
                                 <option value="" disabled="disabled" selected="selected">Land</option>
                                 <?php
                                     $countries = DB::getInstance()->action('SELECT countryName, countryID', 'Countries', array('1', '=', '1'))->results();

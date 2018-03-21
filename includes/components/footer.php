@@ -42,4 +42,5 @@
                 </div>
             </div>
       </footer> 
+<script src="js/saveSelects.js"></script>
 <script src="js/main.js"></script>

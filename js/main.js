@@ -30,7 +30,7 @@ $('.birthday-picker-input').pickadate({
 // fejl skal fades out, fade out skal begynde efter 4 sekunder og tage 1600 ms
 $(document).ready(function() {
   setTimeout(function() {
-    $(".div-validation-errors").fadeOut(1600, function() {});
+   // $(".div-validation-errors").fadeOut(1600, function() {});
   }, 4000);
 });
 
@@ -76,16 +76,7 @@ $(document).ready(function() {
   });
 });
 
-// lav en cookie med profil beskrivelsens værdi og sæt profil beskrivelsens værdi til denne værdi
-// nødvendigt da value="" ikke kunne sættes med php
-$(document).ready(function() {
- $("#bio_input").val(Cookies.get('bio_input_cookie'));
 
-$("#bio_input").change(function() {
-  Cookies.set('bio_input_cookie', $("#bio_input").val());
-});
-
-});
 
 
 
