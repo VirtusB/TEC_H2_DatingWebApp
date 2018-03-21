@@ -30,10 +30,13 @@ $('.birthday-picker-input').pickadate({
 // fejl skal fades out, fade out skal begynde efter 4 sekunder og tage 1600 ms
 $(document).ready(function() {
   setTimeout(function() {
-   // $(".div-validation-errors").fadeOut(1600, function() {});
+   $(".div-validation-errors").fadeOut(1600, function() {});
   }, 4000);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  $('#profile-image').attr('src', localStorage.getItem('profileImg'));
+});
 
 // load billede med js
 function readURL(input) {
@@ -61,6 +64,7 @@ function readURL(input) {
 
       reader.onload = function(e) {
         $('#profile-image').attr('src', e.target.result);
+        localStorage.setItem('profileImg', e.target.result);
       }
   
       reader.readAsDataURL(input.files[0]);

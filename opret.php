@@ -4,17 +4,7 @@ include 'includes/components/header.php';
 
 echo '<main>';
 
-$profileImage = null;
 
-if (!empty($_POST['file'])) {
-    $file = $_POST['file'];
-}
-if (!empty($_FILES['file_upload'])) {
-
-    // process upload, save file somewhere
-
-    $file = $nameOfSavedFile;
-}
 
 ?>
 
@@ -115,7 +105,6 @@ if (Input::exists()) {
             }
         } else {
             foreach ($validation->errors() as $error) {
-                var_dump($_FILES);
                 echo "<p class='form-validation-error'>{$error}.</p> ";
             }
         }
@@ -238,6 +227,8 @@ if (Input::exists()) {
                 <!-- <button type="button" id="profile-img-btn" class="btn">Vælg billede</button> -->
                 <input id="img_input" type="file" name="img_input" class="inputfile btn">
                 <label id="label_img" for="img_input">Vælg et billede</label>
+
+
             </div>
         </div>
 
