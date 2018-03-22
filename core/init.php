@@ -6,10 +6,10 @@ session_start(); // start sessionen
 // sæt vores globale konfiguration
 $GLOBALS['config'] = array(
     'sqlsrv' => array(
-        'Server' => 'virtus.database.windows.net',
-        'UserName' => 'virtusb',
-        'Password' => 'VirtusK0529!',
-        'Database' => 'tech2dating'
+        'Server' => 'localhost',
+        'UserName' => 'sa',
+        'Password' => 'Virtus13',
+        'Database' => 'OOP_Login_Register'
     ),
     'remember' => array(
         'cookie_name' => 'hash',

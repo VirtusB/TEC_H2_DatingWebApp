@@ -36,7 +36,7 @@ echo '<main>';
                         if($login) {
                             Redirect::to('./');
                         } else {
-                            echo 'Fejl ved login';
+                            echo 'Brugernavn eller adgangskode forkert';
                         }
                     } else {
                         foreach($validation->errors() as $error) {
