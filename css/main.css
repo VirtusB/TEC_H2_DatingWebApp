@@ -26,6 +26,10 @@ main {
     max-width: 85%;
 }
 
+.profile-image {
+    max-height: 300px;
+}
+
 .profile-img-div {
     text-align: center;
 }

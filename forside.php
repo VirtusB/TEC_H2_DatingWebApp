@@ -40,12 +40,18 @@ if($user->hasPermission('admin')) {
 <script type="text/javascript">
 // slet cookies brugs under oprettelse
 if (!document.location.pathname.match(/\opret/)) {
-console.log('ikke opret siden');
+// fjern cookies, path er localhost
+Cookies.remove("sexVal", { path: '/DatingWebApp' }); 
+Cookies.remove("regionVal", { path: '/DatingWebApp' }); 
+Cookies.remove("countryVal", { path: '/DatingWebApp' }); 
+
+
+// fjern cookies, path er dating.virtusb.com
 Cookies.remove("sexVal", { path: '/H2_DatingWebApp' }); 
 Cookies.remove("regionVal", { path: '/H2_DatingWebApp' }); 
-Cookies.remove("countryVal", { path: '/H2_DatingWebApp' }); 
+Cookies.remove("countryVal", { path: '/H2_DatingWebApp' });
+
 Cookies.remove("bio_input_cookie", { path: '/' }); 
-localStorage.removeItem("profileImg");
 }
 </script>
 </body>
