@@ -464,3 +464,124 @@ Stack trace:
 [24-Mar-2018 04:10:01 Europe/London] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home/virtusbc/dating.virtusb.com/mailing/signup-mail.php on line 8
 [24-Mar-2018 04:10:01 Europe/London] PHP Warning:  require(../vendor/autoload.php): failed to open stream: No such file or directory in /home/virtusbc/dating.virtusb.com/mailing/signup-mail.php on line 8
 [24-Mar-2018 04:10:01 Europe/London] PHP Fatal error:  require(): Failed opening required '../vendor/autoload.php' (include_path='.:/opt/alt/php71/usr/share/pear') in /home/virtusbc/dating.virtusb.com/mailing/signup-mail.php on line 8
+[24-Mar-2018 04:13:02 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 123
+[24-Mar-2018 04:13:26 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 123
+[24-Mar-2018 04:13:26 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 05:13:26 Europe/Copenhagen] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/virtusbc/dating.virtusb.com/vendor/phpmailer/phpmailer/src/SMTP.php:256) in /home/virtusbc/dating.virtusb.com/classes/Redirect.php on line 17
+[24-Mar-2018 04:13:37 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 123
+[24-Mar-2018 04:13:37 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 123
+[24-Mar-2018 04:22:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:22:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:22:03 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:22:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:22:21 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:22:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:22:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:24:23 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:24:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:24:49 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:24:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:24:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:28:53 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:28:53 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:28:55 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:29:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:29:21 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:29:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:29:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:35:48 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:35:48 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:35:50 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:36:27 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:36:27 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:36:28 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:36:28 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:49:45 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:49:45 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:52:10 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:52:42 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:52:42 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:52:43 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:52:43 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:54:28 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:54:54 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:54:54 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 04:54:55 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:54:55 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 04:58:48 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:01:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:01:01 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 05:01:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:01:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:02:23 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:02:48 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:02:48 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[24-Mar-2018 05:02:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:02:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:09:52 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:10:18 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:12:14 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:12:31 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:13:28 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:14:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:14:01 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:16:45 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:16:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:16:51 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:16:58 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:24:09 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:24:11 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:26:25 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:26:32 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:27:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:28:07 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:30:44 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:31:33 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:31:33 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:31:58 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:32:24 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:33:32 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:33:58 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:39:39 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:40:02 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:40:37 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:40:37 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:46:39 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:46:39 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method EmailSender::contacForm() in /home/virtusbc/dating.virtusb.com/kontakt.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 16
+[24-Mar-2018 05:47:00 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:47:00 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method EmailSender::contacForm() in /home/virtusbc/dating.virtusb.com/kontakt.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 16
+[24-Mar-2018 05:47:49 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:47:49 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method EmailSender::contactForm() in /home/virtusbc/dating.virtusb.com/kontakt.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 16
+[24-Mar-2018 05:48:47 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:48:47 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method EmailSender::contactForm() in /home/virtusbc/dating.virtusb.com/kontakt.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 16
+[24-Mar-2018 05:56:58 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:57:23 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:57:39 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:57:39 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method EmailSender::contactForm() in /home/virtusbc/dating.virtusb.com/kontakt.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 9
+[24-Mar-2018 05:59:36 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 05:59:52 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 06:59:52 Europe/Copenhagen] PHP Notice:  Undefined index: email in /home/virtusbc/dating.virtusb.com/classes/EmailSender.php on line 62
+[24-Mar-2018 06:00:39 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 06:00:50 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 06:04:27 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[24-Mar-2018 07:04:27 Europe/Copenhagen] PHP Notice:  Undefined variable: mail in /home/virtusbc/dating.virtusb.com/kontakt.php on line 10
+[24-Mar-2018 07:04:27 Europe/Copenhagen] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/kontakt.php on line 10
+[24-Mar-2018 07:04:27 Europe/Copenhagen] PHP Fatal error:  Uncaught Error: Call to a member function send() on null in /home/virtusbc/dating.virtusb.com/kontakt.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/kontakt.php on line 10
