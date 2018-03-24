@@ -5,7 +5,6 @@ include 'includes/components/header.php';
 echo '<main>';
 
 
-
 ?>
 
 <div class="row register-row">
@@ -64,7 +63,9 @@ if (Input::exists()) {
             ),
             'age' => array(
                 'name' => 'Fødselsdato',
-                'required' => true
+                'required' => true,
+                'min-age' => 18,
+                'max-age' => 99
             ),
             'bio_input' => array(
                 'name' => 'Profil beskrivelse',
@@ -84,18 +85,21 @@ if (Input::exists()) {
                 $user->create(array(
                     'username' => Input::get('username'),
                     'userpassword' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
-                    'name' => Input::get('name'),
+                    'name' => ucwords(strtolower(Input::get('name'))),
                     'joined' => date('Y-m-d H:i:s'),
                     'usergroup' => 1,
                     'email' => Input::get('email'),
                     'sex' => Input::get('sex_select'),
                     'regionId' => Input::get('region_select'),
-                    'city' => Input::get('city'),
+                    'city' => ucfirst(strtolower(Input::get('city'))),
                     'countryId' => Input::get('country_select'),
                     'age' => Input::getDate(Input::get('age')),
-                    'profileBio' => Input::get('bio_input'),
+                    'profileBio' => ucfirst(Input::get('bio_input')),
                     'imageFile' => Input::getImage('img_input')
                 ));        
+                
+                $EmailSender = new EmailSender();
+                $EmailSender->sendWelcomeEmail();
                 
                 Session::flash('home', 'Du er blevet registreret og kan nu logge ind');
                 Redirect::to('forside');
@@ -106,8 +110,6 @@ if (Input::exists()) {
         } else {
             foreach ($validation->errors() as $error) {
                 echo "<p class='form-validation-error'>{$error}.</p> ";
-                var_dump($_POST);
-                //echo Input::get('data');
             }
         }
     }

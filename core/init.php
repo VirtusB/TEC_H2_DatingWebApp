@@ -5,11 +5,11 @@ session_start(); // start sessionen
 
 // sæt vores globale konfiguration
 $GLOBALS['config'] = array(
-    'sqlsrv' => array(
-        'Server' => 'localhost',
-        'UserName' => 'sa',
-        'Password' => 'Virtus13',
-        'Database' => 'OOP_Login_Register'
+    'mysql' => array(
+        'host' => '127.0.0.1',
+        'username' => 'virtusbc_h2_user',
+        'password' => 'rootpwdating',
+        'dbname' => 'virtusbc_tec-dating'
     ),
     'remember' => array(
         'cookie_name' => 'hash',

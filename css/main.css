@@ -68,7 +68,7 @@ body > div.navbar-fixed > nav > div > ul {
 }
 
 .sex-div, .region-div, .country-div .select-dropdown {
-    color: #B79E9E;
+    /* color: #B79E9E; */
 }
 
 div.row.login-row, div.row.update-information-row, div.row.change-password-row {

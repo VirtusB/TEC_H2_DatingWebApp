@@ -49,6 +49,34 @@ class Validate {
                                 $this->addError("{$field_name} er krævet");
                             }   
                         break;
+                        case 'min-age':              
+                        $minAge = $rule_value;
+
+                        $today = new DateTime(date("Y-m-d"));
+                        $originalEntered = Input::getDate($value); // konverter fra yyyy-mm-dd til dd-mm-yyyy
+                        $enteredConverted = date("d-m-Y", strtotime($originalEntered)); // konverter til unixtime
+                        $bday = new DateTime($enteredConverted); // 
+
+                        $interval = $today->diff($bday);
+                        
+                        if(intval($interval->y) < $minAge) {
+                            $this->addError("Du skal være mindst {$minAge} år for at kunne oprette en konto");
+                        }
+                        break;
+                        case 'max-age':              
+                        $maxAge = $rule_value;
+
+                        $today = new DateTime(date("Y-m-d"));
+                        $originalEntered = Input::getDate($value); // konverter fra yyyy-mm-dd til dd-mm-yyyy
+                        $enteredConverted = date("d-m-Y", strtotime($originalEntered)); // konverter til unixtime
+                        $bday = new DateTime($enteredConverted); // 
+
+                        $interval = $today->diff($bday);
+                        
+                        if(intval($interval->y) > $maxAge) {
+                            $this->addError("Du må maks være {$maxAge} år");
+                        }
+                        break;                                       
                         case 'disallow-only-numbers':
                             if(is_numeric($value)) {
                                 $this->addError("{$field_name} må ikke kun indeholde tal");

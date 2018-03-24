@@ -1,6 +1,7 @@
 <?php
 
 require_once 'core/init.php';
+
 include 'includes/components/header.php';
 
 echo '<main>';
@@ -15,16 +16,19 @@ if(Session::exists('home')) {
 
 $user = new User(); // current user
 
+
 if($user->isLoggedIn()) {
     
 ?>
     <p>Hejsa <a href="profil?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username); ?></a></p>
 <?php
+
 if($user->hasPermission('admin')) {
     echo '<p>Du er en administrator</p>';
 } else if ($user->hasPermission('standard')) {
     echo '<p>Du er en standard bruger</p>';
 }
+
 
 } else {
 ?>
@@ -41,15 +45,15 @@ if($user->hasPermission('admin')) {
 // slet cookies brugs under oprettelse
 if (!document.location.pathname.match(/\opret/)) {
 // fjern cookies, path er localhost
-Cookies.remove("sexVal", { path: '/DatingWebApp' }); 
-Cookies.remove("regionVal", { path: '/DatingWebApp' }); 
-Cookies.remove("countryVal", { path: '/DatingWebApp' }); 
+// Cookies.remove("sexVal", { path: '/DatingWebApp' }); 
+// Cookies.remove("regionVal", { path: '/DatingWebApp' }); 
+// Cookies.remove("countryVal", { path: '/DatingWebApp' }); 
 
 
 // fjern cookies, path er dating.virtusb.com
-Cookies.remove("sexVal", { path: '/H2_DatingWebApp' }); 
-Cookies.remove("regionVal", { path: '/H2_DatingWebApp' }); 
-Cookies.remove("countryVal", { path: '/H2_DatingWebApp' });
+Cookies.remove("sexVal", { path: '/' }); 
+Cookies.remove("regionVal", { path: '/' }); 
+Cookies.remove("countryVal", { path: '/' });
 
 Cookies.remove("bio_input_cookie", { path: '/' }); 
 }

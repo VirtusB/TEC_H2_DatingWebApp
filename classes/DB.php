@@ -11,7 +11,7 @@ class DB {
 
     private function __construct() {
         try {
-            $this->_pdo = new PDO('sqlsrv:Server=' . Config::get('sqlsrv/Server') .';Database=' . Config::get('sqlsrv/Database'), Config::get('sqlsrv/UserName'), Config::get('sqlsrv/Password'));
+            $this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') .';dbname=' . Config::get('mysql/dbname'), Config::get('mysql/username'), Config::get('mysql/password'), array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")); //new PDO("mysql:host=localhost;dbname=tec_h2_datingweb", 'virtusb', 'Virtus13'); 
         }
         catch(PDOException $e) {
             die($e->getMessage());

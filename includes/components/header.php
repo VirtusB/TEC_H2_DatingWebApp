@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="materialize/css/materialize.min.css">
@@ -14,6 +15,11 @@
     <script src="js/functions/resizeEvent.js"></script>
     <script src="materialize/js/materialize.min.js"></script>
     <title>Dating App</title>
+    <!-- Cookie consent -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script src="js/cookieNotice.js"></script>
+</head>
 <?php
 $user = new User(); // current user
 ?>
@@ -37,9 +43,7 @@ $user = new User(); // current user
             <?php
         }
         ?>
-          
-          
-
+          <li><a href="kontakt">Kontakt os</a></li>
         </ul>
       </div>
     </nav>
