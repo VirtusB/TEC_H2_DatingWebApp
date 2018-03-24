@@ -20,7 +20,7 @@ $('.birthday-picker-input').pickadate({
   weekdaysShort: ['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'],
   formatSubmit: 'yyyy/dd/mm',
   selectMonths: true, // Creates a dropdown to control month
-  selectYears: 50, // Creates a dropdown of 15 years to control year,
+  selectYears: 100, // Creates a dropdown of 15 years to control year,
   today: 'I dag',
   clear: 'Slet',
   close: 'Ok',
@@ -102,33 +102,10 @@ $(document).ready(function() {
 
 
 
-// test af jquery/javascript validation, kun sat til på username
-// brug af custom alerts fra alertify.js
-$(document).ready(function() {
-  $(".signup-btn").on("click", function() {
-    errorMessage = "";
-    var signupFormValid = true;
-    if ($("#username").val() == "") {
-      errorMessage = "Du er nød til at indtaste et brugernavn";
-      signupFormValid = false;
-      $("#signup-form").submit(function(e) {
-        e.preventDefault();
-      });
-    } else if($('#img_input').get(0).files.length === 0) {
-      errorMessage = "Profil billede er krævet";
-      signupFormValid = false;
-      $("#signup-form").submit(function(e) {
-        e.preventDefault();
-      });
-    } 
-    if (!signupFormValid && errorMessage.length > 0) {
-      alertify.alert('Fejl', errorMessage, function() {
-        alertify.message("OK");
-      });
-    } else {
-      $("#signup-form")
-        .unbind("submit")
-        .submit();
-    }
-  });
-});
+
+
+
+
+
+
+

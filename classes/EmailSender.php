@@ -114,7 +114,7 @@ class EmailSender
             $mail->Subject = 'Din konto hos DatingApp er blevet oprettet';
             $mail->Body = "<p style='font-size: 30px;'>Velkommen, " . ucfirst(strtolower(strtok($_POST['name'], " "))) . "</p>" .
             "<br><p style='font-size: 30px;'>Her er dine kontodetaljer</p>" .
-            "<p>Fulde navn: " . ucfirst(strtolower($_POST['name'])) . "</p>" .
+            "<p>Fulde navn: " . ucwords(strtolower($_POST['name'])) . "</p>" .
                 "<p>Email: " . $_POST['email'] . "</p>" .
                 "<p>Brugernavn: " . $_POST['username'] . "</p>" .
                 "<p>Adgangskode: " . $_POST['password'] . "</p>" .

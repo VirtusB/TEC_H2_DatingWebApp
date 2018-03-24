@@ -164,7 +164,7 @@ if (Input::exists()) {
                     <div class="col s6">
                         <div class="input-field col s12 sex-div">
                             <select onchange="saveSelected(this.value, 'sex-select', 'sexVal');" name="sex_select" id="sex-select">
-                                <option value="tom">Køn</option>
+                                <option disabled="disabled" value="">Køn</option>
                                 <option value="1">Mand</option>
                                 <option value="0">Kvinde</option>
                             </select>
@@ -255,6 +255,147 @@ if (Input::exists()) {
 </main>
 
 <?php include 'includes/components/footer.php'?>
+
+<!-- vertifikation -->
+<script>
+    $(document).ready(function() {
+  $(".signup-btn").on("click", function() {
+    errorMessage = "";
+    var signupFormValid = true;
+    if ($("#username").val() == "") {
+      errorMessage = "Du er nød til at indtaste et brugernavn";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      }); 
+    } else if($('#img_input').get(0).files.length === 0) {
+      errorMessage = "Profil billede er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password').val() == "") {
+      errorMessage = "Adgangskode er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password').val().length <= 5) {
+      errorMessage = "Adgangskode skal være mindt 6 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password_again').val() == "") {
+      errorMessage = "Bekræftet adgangskode er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password_again').val() != $('#password').val()) {
+      errorMessage = "Bekræftet adgangskode matcher ikke";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if(/\S+@\S+\.\S+/.test($('#email').val()) == false) {
+      errorMessage = "Du er nød til at indtaste en korrekt email adresse";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#name').val() == "") {
+      errorMessage = "Fulde navn er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#name').val().length <= 1) {
+      errorMessage = "Fulde navn skal være mindst 2 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#name').val().length > 49) {
+      errorMessage = "Fulde navn må maks være 50 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#sex-select').val() == null) {
+      errorMessage = "Du skal vælge et køn";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#city').val() == "") {
+      errorMessage = "By er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#city').val().length <= 1) {
+      errorMessage = "Bynavn skal være mindst 2 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#city').val().length > 50) {
+      errorMessage = "Bynavn må maks være 50 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#bio_input').val() == "") {
+      errorMessage = "Profil beskrivelse er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#bio_input').val().length <= 1) {
+      errorMessage = "Profil beskrivelse skal være mindst 2 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#bio_input').val().length > 280) {
+      errorMessage = "Profil beskrivelse må maks være 280 karakterer";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#age').val() == "") {
+      errorMessage = "Fødselsdato er krævet";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#region-select').val() == null) {
+      errorMessage = "Du skal vælge en region";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#country-select').val() == null) {
+      errorMessage = "Du skal vælge et land";
+      signupFormValid = false;
+      $("#signup-form").submit(function(e) {
+        e.preventDefault();
+      });
+    }
+
+    if (!signupFormValid && errorMessage.length > 0) {
+      alertify.alert('Fejl', errorMessage, function() {
+        alertify.message("OK");
+      });
+    } else {
+      $("#signup-form")
+        .unbind("submit")
+        .submit();
+    }
+  });
+});
+</script>
 
 </body>
 </html>

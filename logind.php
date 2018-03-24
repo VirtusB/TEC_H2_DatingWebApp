@@ -47,7 +47,7 @@ echo '<main>';
             }
         ?>
     </div>
-    <form action="" method="POST" class="col s12">
+    <form action="" id="login-form" method="POST" class="col s12">
     <div class="row">
     <div class="input-field col s12">
       <input id="username" name="username" autocomplete="off" type="text" class="validate">
@@ -67,7 +67,7 @@ echo '<main>';
       </div>
 
       <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input class="btn btn-left-margin" type="submit" value="Log ind">
+    <input class="btn btn-left-margin login-btn" type="submit" value="Log ind">
      
       
     </form>
@@ -76,6 +76,58 @@ echo '<main>';
   </main>
 
 <?php include 'includes/components/footer.php' ?>
+
+<!-- vertifikation -->
+<script>
+    $(document).ready(function() {
+  $(".login-btn").on("click", function() {
+    errorMessage = "";
+    var loginFormValid = true;
+    if ($("#username").val() == "") {
+      errorMessage = "Du er nød til at indtaste et brugernavn";
+      loginFormValid = false;
+      $("#login-form").submit(function(e) {
+        e.preventDefault();
+      }); 
+    } else if($('#username').val().length <= 1) {
+      errorMessage = "Brugernavn skal være mindst 2 karakterer";
+      loginFormValid = false;
+      $("#login-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#username').val().length > 20) {
+      errorMessage = "Brugernavn må maks være 20 karakterer";
+      loginFormValid = false;
+      $("#login-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password').val() == "") {
+      errorMessage = "Du skal indtaste en adgangskode";
+      loginFormValid = false;
+      $("#login-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password').val().length <= 5) {
+      errorMessage = "Adgangskode skal være mindst 6 karakterer";
+      loginFormValid = false;
+      $("#login-form").submit(function(e) {
+        e.preventDefault();
+      });
+    }
+
+
+    if (!loginFormValid && errorMessage.length > 0) {
+      alertify.alert('Fejl', errorMessage, function() {
+        alertify.message("OK");
+      });
+    } else {
+      $("#login-form")
+        .unbind("submit")
+        .submit();
+    }
+  });
+});
+</script>
 
 </body>
 </html>
