@@ -34,7 +34,7 @@ $user = new User(); // current user
             ?>
             <li><a href="logud">Log ud</a></li>
             <li><a href="opdater">Opdater profil</a></li>
-            <li><a href="nyadgangskode">Ændre adgangskode</a></li>
+            <li><a href="nyadgangskode">Skift adgangskode</a></li>
             <?php
         } else {
             ?>

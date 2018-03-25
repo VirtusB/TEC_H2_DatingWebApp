@@ -48,6 +48,10 @@ if(Input::exists()) {
                     'userpassword' => password_hash(Input::get('password_new'), PASSWORD_DEFAULT)
                 ));
 
+                // send den nye adgangskode
+                $EmailSender = new EmailSender();
+                $EmailSender->sendNewPassword();
+
                 Session::flash('home', 'Din adgangskode er blevet opdateret');
                 Redirect::to('forside');
             }
@@ -60,7 +64,7 @@ if(Input::exists()) {
 }
 ?>
 </div>
-    <form action="" id="update-form" method="POST" class="col s12">
+    <form action="" id="new-password-form" method="POST" class="col s12">
     <div class="row">
     <div class="input-field col s12">
       <input id="password_current" id="password_current" name="password_current" autocomplete="off" type="password" class="validate">
@@ -83,7 +87,7 @@ if(Input::exists()) {
   </div>
       
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input class="btn btn-left-margin update-btn" type="submit" value="Opdater"> 
+    <input class="btn btn-left-margin new-password-btn" type="submit" value="Opdater"> 
       
     </form>
   </div>
@@ -94,54 +98,54 @@ if(Input::exists()) {
 
 <!-- vertifikation -->
 <script>
-// $(document).ready(function() {
-//   $(".update-btn").on("click", function() {
-//     errorMessage = "";
-//     var updateFormValid = true;
-//     if ($("#password_current").val() == "") {
-//       errorMessage = "Du er nød til at indtaste din nuværende adgangskode";
-//       updateFormValid = false;
-//       $("#update-form").submit(function(e) {
-//         e.preventDefault();
-//       }); 
-//     } else if($('#password_current').val().length <= 5) {
-//       errorMessage = "Nuværende adgangskode skal være mindst 6 karakterer";
-//       updateFormValid = false;
-//       $("#update-form").submit(function(e) {
-//         e.preventDefault();
-//       });
-//     } else if($('#username').val().length > 20) {
-//       errorMessage = "Brugernavn må maks være 20 karakterer";
-//       updateFormValid = false;
-//       $("#update-form").submit(function(e) {
-//         e.preventDefault();
-//       });
-//     } else if($('#password').val() == "") {
-//       errorMessage = "Du skal indtaste en adgangskode";
-//       updateFormValid = false;
-//       $("#update-form").submit(function(e) {
-//         e.preventDefault();
-//       });
-//     } else if($('#password').val().length <= 5) {
-//       errorMessage = "Adgangskode skal være mindst 6 karakterer";
-//       updateFormValid = false;
-//       $("#update-form").submit(function(e) {
-//         e.preventDefault();
-//       });
-//     }
+$(document).ready(function() {
+  $(".new-password-btn").on("click", function() {
+    errorMessage = "";
+    var newPasswordFormValid = true;
+    if ($("#password_current").val() == "") {
+      errorMessage = "Du er nød til at indtaste din nuværende adgangskode";
+      newPasswordFormValid = false;
+      $("#new-password-form").submit(function(e) {
+        e.preventDefault();
+      }); 
+    } else if($('#password_current').val().length <= 5) {
+      errorMessage = "Nuværende adgangskode skal være mindst 6 karakterer";
+      newPasswordFormValid = false;
+      $("#new-password-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password_new').val() == "") {
+      errorMessage = "Du er nød til at indtaste en ny adgangskode";
+      newPasswordFormValid = false;
+      $("#new-password-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password_new').val().length <= 5) {
+      errorMessage = "Den nye adgangskode skal være mindst 6 karakterer";
+      newPasswordFormValid = false;
+      $("#new-password-form").submit(function(e) {
+        e.preventDefault();
+      });
+    } else if($('#password_new_again').val() != $('#password_new').val()) {
+      errorMessage = "Bekræftet adgangskode skal matche din nye adgangskode";
+      newPasswordFormValid = false;
+      $("#new-password-form").submit(function(e) {
+        e.preventDefault();
+      });
+    }
 
 
-//     if (!updateFormValid && errorMessage.length > 0) {
-//       alertify.alert('Fejl', errorMessage, function() {
-//         alertify.message("OK");
-//       });
-//     } else {
-//       $("#update-form")
-//         .unbind("submit")
-//         .submit();
-//     }
-//   });
-// });
+    if (!newPasswordFormValid && errorMessage.length > 0) {
+      alertify.alert('Fejl', errorMessage, function() {
+        alertify.message("OK");
+      });
+    } else {
+      $("#new-password-form")
+        .unbind("submit")
+        .submit();
+    }
+  });
+});
 </script>
 
 </body>

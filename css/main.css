@@ -78,6 +78,20 @@ div.row.login-row, div.row.update-information-row, div.row.change-password-row {
     padding-bottom: 5%;
 }
 
+.update-information-row {
+    width: 100% !important;
+    margin-top: 5%;
+    padding-bottom: 5%;
+}
+
+.update-btn {
+    width: 20%;
+}
+
+.update-btn-row {
+    text-align: center;
+}
+
 div.row.register-row {
     /* margin: 0 auto; */
     /* width: 50%; */

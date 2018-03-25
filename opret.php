@@ -3,8 +3,6 @@ require_once 'core/init.php';
 include 'includes/components/header.php';
 
 echo '<main>';
-
-
 ?>
 
 <div class="row register-row">
