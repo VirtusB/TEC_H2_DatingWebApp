@@ -14,6 +14,13 @@
     <script src="alertify/js/alertify.min.js"></script>
     <script src="js/functions/resizeEvent.js"></script>
     <script src="materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="fontawesome\css\fontawesome-all.min.css">
+    <link rel="stylesheet" href="materialize/extras/noUiSlider/nouislider.css">
+    <script src="materialize/extras/noUiSlider/nouislider.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
     <title>Dating App</title>
     <!-- Cookie consent -->
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />

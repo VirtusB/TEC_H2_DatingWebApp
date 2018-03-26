@@ -26,9 +26,7 @@ main {
     max-width: 85%;
 }
 
-.profile-image {
-    max-height: 300px;
-}
+
 
 .profile-img-div {
     text-align: center;
@@ -83,6 +81,13 @@ div.row.login-row, div.row.update-information-row, div.row.change-password-row {
     margin-top: 5%;
     padding-bottom: 5%;
 }
+
+.profile-row {
+    /* margin-top: 5%; */
+    /* padding-bottom: 5%; */
+}
+
+
 
 .update-btn {
     width: 20%;

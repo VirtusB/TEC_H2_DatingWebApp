@@ -14,6 +14,31 @@ $(document).ready(function() {
 $(document).ready(function() {
   $("#country-select").material_select();
 });
+
+$(document).ready(function() {
+  $("#interest-select").material_select();
+});
+
+
+var slider = document.getElementById('age-slider');
+  noUiSlider.create(slider, {
+   start: [18, 35],
+   connect: true,
+   step: 1,
+   orientation: 'horizontal', // 'horizontal' or 'vertical'
+   range: {
+     'min': 18,
+     'max': 99
+   },
+   format: wNumb({
+     decimals: 0
+   })
+  });
+
+
+
+
+
 // initialiser date picker
 $('.birthday-picker-input').pickadate({
   monthsFull: ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'],
