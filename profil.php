@@ -75,6 +75,7 @@ if(!$username = Input::get('user')) {
             max-height: 400px;
             outline: solid;
             outline-offset: 5px;
+            outline-color: #e0e0e0;
             width: 267px;
             min-width: 267px;
             max-width: 267px;
@@ -101,6 +102,7 @@ if(!$username = Input::get('user')) {
             min-width: 267px;
             outline: solid;
             outline-offset: 5px;
+            outline-color: #e0e0e0;
             /* margin: 0 auto; */
             float: left;
             margin-left: 2%;
@@ -145,7 +147,7 @@ if(!$username = Input::get('user')) {
             width: 97%;
         }
 
-        html, body, .profile-row {
+        html, body, .profile-row, .age-slider-row {
             height: 100%;
         }
 
@@ -155,10 +157,9 @@ if(!$username = Input::get('user')) {
     </style>
 
 
-
     <div class="row profile-row">
 
-        <div class="row">
+        <div class="row sex-region-interests-row">
             <div class="col s3"></div>
 
             <div class="col s2">
@@ -193,7 +194,8 @@ if(!$username = Input::get('user')) {
 
             <div class="col s3"></div>
         </div> <!-- køn, region og interesser row -->
-        <div class="row">
+
+        <div class="row age-slider-row valign-wrapper">
             <div class="col s3"></div>
             <div class="col s4">
             <div id="age-slider"></div>                     
