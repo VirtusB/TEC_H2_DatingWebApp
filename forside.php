@@ -20,7 +20,7 @@ $user = new User(); // current user
 if($user->isLoggedIn()) {
     
 ?>
-    <p>Hejsa <a href="profil?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username); ?></a></p>
+    <p>Hejsa <?php echo escape($user->data()->username); ?></p>
 <?php
 
 if($user->hasPermission('admin')) {

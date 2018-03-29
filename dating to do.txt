@@ -1,0 +1,11 @@
+opret, fødselsdato min og max viste datoer - vis ikke unødvendige datoer under oprettelse og opdatering af profil
+
+
+js vertifikation = min 2 max 20 ikke kun numre, brugernavn - lige nu tjekkes der kun via PHP
+
+
+under profil søgning: inputs skal huskes, køn, region, interesser og min/max alder skal huskes til næste filtrering
+
+interesser mangler
+
+forbindelsen til databasen i profil.php skal ændres til at bruge DB klassens forbindelse, i stedet for at oprette en ny PDO forbindelse

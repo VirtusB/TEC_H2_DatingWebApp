@@ -213,7 +213,7 @@ if (Input::exists()) {
 
           </div>
           <div class="col s6 profile-img-div">
-                <img id="profile-image" class="profile-image" src="data:image/jpeg;base64,<?php echo escape($user->data()->imageFile);?>" />
+                <img id="profile-image" src="data:image/jpeg;base64,<?php echo escape($user->data()->imageFile);?>" />
                 <br>
                 <input id="img_input" type="file" name="img_input" class="inputfile btn">
                 <label id="label_img" for="img_input">Vælg et billede</label>

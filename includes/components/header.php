@@ -38,10 +38,10 @@ $user = new User(); // current user
         <ul class="right hide-on-med-and-down">
         <?php
         if($user->isLoggedIn()) {
-            ?>
-            <li><a href="logud">Log ud</a></li>
+            ?> 
             <li><a href="opdater">Opdater profil</a></li>
             <li><a href="nyadgangskode">Skift adgangskode</a></li>
+            <li><a href="logud">Log ud</a></li>
             <?php
         } else {
             ?>
