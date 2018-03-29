@@ -87,6 +87,146 @@ div.row.login-row, div.row.update-information-row, div.row.change-password-row {
     /* padding-bottom: 5%; */
 }
 
+.profile-row {
+    margin-top: 6%;
+}
+
+.profile-arrows {
+    font-size: 6rem;
+    color: #333;
+}
+
+.profile-arrows:hover {
+    color: #ee6e73;
+}
+
+.filter-search-btn {
+    float: right;
+}
+
+.profile-divider {
+    margin: 0 auto;
+    width: 65%;
+}
+
+.view-profiles {
+    margin-top: 2%;
+}
+
+#next-profile-btn {
+    float: left;
+}
+#previous-profile-btn {
+    float: right;
+}
+
+.previous-profile-tooltip {
+    /* font-family: "Operator Mono Extra Light" !important; */
+    box-shadow: none !important;
+    font-size: 15px !important;
+}
+
+.next-profile-tooltip {
+    /* font-family: "Operator Mono Extra Light" !important; */
+    box-shadow: none !important;
+    font-size: 15px !important;
+}
+
+.profile-name-age-row {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.profile-image {
+    max-height: 400px;
+    outline: solid;
+    outline-offset: 5px;
+    outline-color: #e0e0e0;
+    width: 267px;
+    min-width: 267px;
+    max-width: 267px;
+    float: right;
+    margin-right: 2%;
+}
+
+.profile-image-row {
+    text-align: center;
+    min-height: 400px;
+    height: 400px;
+}
+
+.profile-info-row {
+    text-align: center; 
+}
+
+.profile-info {
+    min-height: 400px;
+    height: 400px;
+    max-height: 400px;
+    width: 267px;
+    max-width: 267px;
+    min-width: 267px;
+    outline: solid;
+    outline-offset: 5px;
+    outline-color: #e0e0e0;
+    /* margin: 0 auto; */
+    float: left;
+    margin-left: 2%;
+}
+
+.profile-info:hover, .profile-image:hover {
+    outline-color: #62c66e;
+}
+
+.profile-bio {
+    text-align: left;
+    word-wrap: break-word;
+    height: 176px;
+}
+
+.message-user {
+    margin-top: 38%;
+}
+
+.message-user-btn {
+    margin-top: 4%;
+    max-width: 260px;
+}
+
+.interests-div {
+    width: 283px;
+    float: right;
+}
+
+.location-div {
+    width: 283px;
+    float: left;
+}
+
+.user-interests-h6 {
+    font-weight: 500;
+}
+
+.user-location-h6 {
+    font-weight: 500;
+}
+
+.interests-ul {
+    column-count: 2;
+    column-gap: 20px;
+}
+
+.interests-divider {
+    width: 97%;
+}
+
+html, body, .profile-row, .age-slider-row {
+    height: 100%;
+}
+
+.name-paragraph {
+    margin-top: 0 !important;
+}
 
 
 .update-btn {
