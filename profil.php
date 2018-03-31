@@ -296,13 +296,16 @@ echo '<p>', $e->getMessage(), '</p>';
                     <div class="divider"></div>
                     <!-- <button class="btn message-user-btn">Chat med </button> -->
                     <a class="message-user-btn modal-trigger btn" href="#message-modal">Chat med </a>
-                    <input type="hidden" id="user-id-to-message"> <!-- dette input indeholder ID'et på den bruger som man klikker "Chat med" -->
+                    <input type="hidden" name="user-id-to-message" id="user-id-to-message"> <!-- dette input indeholder ID'et på den bruger som man klikker "Chat med" -->
+                    <input value="<?php echo $data->id; ?>" type="hidden" name="user-id-from-message" id="user-id-from-message"> <!-- dette input indeholder ID'et på den bruger som er logget ind --> 
                     <!-- "Chat med" popup -->
                     <div id="message-modal" class="modal">
                         <div class="modal-content">
                         <h4 class="profile-message-h4">
                         <script>
                         $(document).ready(function() {
+
+
                         var nameParagraph = $(".name-paragraph").text();
                         nameParagraph = nameParagraph.split(","); 
                         $(".profile-message-h4").text("Send en besked til " + nameParagraph[0])                                               
@@ -314,29 +317,35 @@ echo '<p>', $e->getMessage(), '</p>';
                         <script>
                         function profileSendMessage() {
                             var message = document.getElementById("profileMessageInput").value;
-                            var dataString = "message_to_pass" + message;
+                            var msg_to_id = document.getElementById("user-id-to-message").value;
+                            var msg_from_id = document.getElementById("user-id-from-message").value;
+
+                            //var dataString = "message_to_pass=" + message;
+                            var dataString = {
+                                "message_to_pass" : message,
+                                "message_to_user" : msg_to_id,
+                                "message_from_user" : msg_from_id
+                            };
                             if (message == "") {
                                 alertify.alert('Fejl', "Du er nød til at indtaste en besked", function() {
                                     alertify.message("OK");
                                 });
                             } else {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "pass-message.php",
-                                    data: dataString,
-                                    cache: false,
-                                    success: function(data) {
-                                        $("#success-message").html(data);
-                                    },
-                                    error: function(err) {
-                                        alertify.alert('Fejl', err, function() {
-                                            alertify.message("OK");
-                                        });
-                                    }
-                                });
+                              $.ajax({
+                                type: "POST",
+                                url: "pass-message.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(data) {
+                                  $("#success-message").html(data);
+                                },
+                                error: function(err) {
+                                  alert(err);
+                                }
+                              });
                             }
                             return false;
-                        }
+                          }
                         </script>
                         </div>
                         <div class="modal-footer">
