@@ -96,7 +96,7 @@ $(document).ready(function() {
     inDuration: 200,
     outDuration: 150,
     constrain_width: true,
-    hover: false, 
+    hover: true, 
     gutter: 1
   });
 
