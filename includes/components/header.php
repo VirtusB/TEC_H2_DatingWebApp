@@ -45,9 +45,21 @@ $user = new User(); // current user
 .my-dropdown-content {
   min-width: 216px !important;
 }
+
+.header-badge {
+  vertical-align: middle;
+}
+
+span.label {
+  padding: 0.25em;
+  border-radius: 0.25em;
+  margin: 0.25em;
+}
+
 </style>
 
             
+<!-- <span class="new badge red header-badge">4</span>  -->
 
     <div class="navbar-fixed">
     <nav>
@@ -59,6 +71,7 @@ $user = new User(); // current user
             ?> 
             <li><a href="profil" id="header-view-profiles"><i class="fa fa-search header-icons"></i>    Gennemse profiler</a></li>
             <li><a href="opdater"><i class="fa fa-user header-icons"></i>    <?php echo escape($user->data()->username); ?></a></li>
+            <li><a href="beskeder"><i class="fa fa-comments header-icons"></i>    Beskeder</a></li>         
             <li><a id="my-dropdown" class="dropdown-trigger" href="#!" data-activates="dropdown1" data-target="dropdown1"><i class="fa fa-cogs header-icons"></i><i class="material-icons right header-material-arrow">arrow_drop_down</i></a></li>
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content my-dropdown-content'>

@@ -87,6 +87,10 @@ div.row.login-row, div.row.update-information-row, div.row.change-password-row {
     /* padding-bottom: 5%; */
 }
 
+#message-modal {
+    transform: translateY(50%) !important;
+}
+
 .profile-row {
     margin-top: 6%;
 }

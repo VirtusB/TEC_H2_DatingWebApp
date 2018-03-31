@@ -106,6 +106,14 @@ CREATE TABLE UserSession (
     hash NVARCHAR(150)
 );
 
+CREATE TABLE Messages (
+	id int(11) AUTO_INCREMENT PRIMARY KEY,
+	msg_from_id int(11),
+	msg_to_id int(11),
+	msg_body text,
+	msg_date datetime
+)
+
 INSERT INTO groups (groupName, permissions) values ('Standard user', '{"standard": 1}'); 
 INSERT INTO groups (groupName, permissions) values ('Administrator', '{"admin": 1}');
 INSERT INTO Users (username, userpassword, name, joined, usergroup, countryId, regionId, city, sex, age, email, profileBio, active) values ('virtus', '$2y$10$Moic2ANbBqyJJwQ3hJCVU.lvYdUtPH64jyXb99XB39HCYRCR7CAIy', 'virtus opstrup', NOW(), 1, 1, 11, 'Snekkersten', 0, '2018-03-07', 'virtusbradder@gmail.com', 'Velkommen til min profil', 1);

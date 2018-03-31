@@ -248,20 +248,16 @@ if ($stmt->rowCount() > 0) {
             $("#user-city").append("' . $row['city'] .'");
             $("#user-country-region").prepend("' . $country .'");
             $("#user-country-region").append("' . $region .'");
+            $("#user-id-to-message").val("' . $row['id'] .'");
+            
                  
-
-            //$("#previous-link").attr("href", $("#previous-profile-php").attr("href"));
-            //$("#next-link").attr("href", $("#next-profile-php").attr("href"));
         })</script>';
 
         
     }
 
 } else {
-    echo '<script type="text/javascript">$(document).ready(function(){
-        //alert("Ikke flere profiler");
-        //history.go(-1);
-    })</script>';
+    
 }
 
 } catch (Exception $e) {
@@ -295,9 +291,59 @@ echo '<p>', $e->getMessage(), '</p>';
 
                 </p>
                 
+                <!-- "Chat med" knap -->
                 <div class="message-user">
-                <div class="divider"></div>
-                <button class="btn message-user-btn">Chat med </button>
+                    <div class="divider"></div>
+                    <!-- <button class="btn message-user-btn">Chat med </button> -->
+                    <a class="message-user-btn modal-trigger btn" href="#message-modal">Chat med </a>
+                    <input type="hidden" id="user-id-to-message"> <!-- dette input indeholder ID'et på den bruger som man klikker "Chat med" -->
+                    <!-- "Chat med" popup -->
+                    <div id="message-modal" class="modal">
+                        <div class="modal-content">
+                        <h4 class="profile-message-h4">
+                        <script>
+                        $(document).ready(function() {
+                        var nameParagraph = $(".name-paragraph").text();
+                        nameParagraph = nameParagraph.split(","); 
+                        $(".profile-message-h4").text("Send en besked til " + nameParagraph[0])                                               
+                        });
+                        </script>
+                        </h4>
+                        <textarea id="profileMessageInput" class="materialize-textarea validate" data-length="150"></textarea>
+                        <p id="success-message"></p>
+                        <script>
+                        function profileSendMessage() {
+                            var message = document.getElementById("profileMessageInput").value;
+                            var dataString = "message_to_pass" + message;
+                            if (message == "") {
+                                alertify.alert('Fejl', "Du er nød til at indtaste en besked", function() {
+                                    alertify.message("OK");
+                                });
+                            } else {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "pass-message.php",
+                                    data: dataString,
+                                    cache: false,
+                                    success: function(data) {
+                                        $("#success-message").html(data);
+                                    },
+                                    error: function(err) {
+                                        alertify.alert('Fejl', err, function() {
+                                            alertify.message("OK");
+                                        });
+                                    }
+                                });
+                            }
+                            return false;
+                        }
+                        </script>
+                        </div>
+                        <div class="modal-footer">
+                        <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a> -->
+                        <button onclick="profileSendMessage();" class="waves-effect waves-green btn-flat">Send</button>
+                        </div>
+                    </div>
                 </div>
                 
               </div>
@@ -365,6 +411,11 @@ echo '<p>', $e->getMessage(), '</p>';
 
 
 $(document).ready(function() {
+
+$(document).ready(function(){
+    $("#message-modal").modal();
+  });
+
 
 // If cookie is set, scroll to the position saved in the cookie.
 if ( Cookies.get('scroll') !== null ) {
