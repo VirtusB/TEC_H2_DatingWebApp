@@ -67,6 +67,22 @@ if(!$user->isLoggedIn()) {
             <div id="age-slider">                       
             <script>
                $(document).ready(function() {
+
+                var slider = document.getElementById('age-slider');
+                    noUiSlider.create(slider, {
+                    start: [18, 35],
+                    connect: true,
+                    step: 1,
+                    orientation: 'horizontal', // 'horizontal' or 'vertical'
+                    range: {
+                        'min': 18,
+                        'max': 99
+                    },
+                    format: wNumb({
+                        decimals: 0
+                    })
+                });
+
                     var ageslider = document.getElementById("age-slider");
 
                     var ageMin = document.getElementById("ageMin-input");
@@ -346,7 +362,8 @@ echo '<p>', $e->getMessage(), '</p>';
 <?php include 'includes/components/footer.php' ?>
 
 <script>
-// When document is ready...
+
+
 $(document).ready(function() {
 
 // If cookie is set, scroll to the position saved in the cookie.

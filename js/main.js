@@ -20,20 +20,7 @@ $(document).ready(function() {
 });
 
 
-var slider = document.getElementById('age-slider');
-  noUiSlider.create(slider, {
-   start: [18, 35],
-   connect: true,
-   step: 1,
-   orientation: 'horizontal', // 'horizontal' or 'vertical'
-   range: {
-     'min': 18,
-     'max': 99
-   },
-   format: wNumb({
-     decimals: 0
-   })
-  });
+
 
 
 
