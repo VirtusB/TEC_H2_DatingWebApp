@@ -58,7 +58,9 @@ if (Input::exists()) {
             )
         ));
 
-        if($validation->passed()) {
+        if (empty(Input::get('interest_select'))) {
+            echo "<p class='form-validation-error'>Du skal mindst vælge 1 interesse</p> ";
+        } else if($validation->passed()) {
             try {
                 $user->update(array(
                     'name' => ucwords(strtolower(Input::get('name'))),
@@ -71,9 +73,13 @@ if (Input::exists()) {
                     'imageFile' => (strlen(Input::getImage('img_input')) > 1000 ? Input::getImage('img_input') : $user->data()->imageFile) //Input::getImage('img_input')
                 ));
 
-                //echo strlen(Input::getImage('img_input'));
-                //var_dump($_POST);
-                //die();
+                // slet nuværende interesser
+                DB::getInstance()->query('DELETE FROM RS_ProfileInterests WHERE userId = '. $user->data()->id .' ');
+
+                $interests = Input::get('interest_select');
+                foreach ($interests as $interest) {
+                    DB::getInstance()->query('INSERT INTO RS_ProfileInterests (interestId, userId) VALUES ('. $interest .',  '. $user->data()->id .')');
+                }
 
 
                 Session::flash('home', 'Dine informationer er blevet opdateret');
@@ -113,6 +119,28 @@ if (Input::exists()) {
                     <div class="input-field col s6 offset-m3">
                         <input id="name" name="name" type="text" class="validate" autocomplete="off" value="<?php echo escape($user->data()->name); ?>">
                         <label for="name">Dit fulde navn</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                    <select multiple="multiple" name="interest_select[]" id="interest-select">
+                                <option value="" disabled="disabled" selected="selected">Interesser</option>
+                                <?php                          
+                                    $userInterests = DB::getInstance()->action('SELECT interestId', 'RS_ProfileInterests', array('userId', '=', ' '. $user->data()->id .' '))->results();
+
+                                    $userInterestsSimple = array();
+                                    foreach($userInterests as $userInterest) {
+                                        $userInterestsSimple[] = $userInterest->interestId;
+                                    }
+                                    
+                                    $interests = DB::getInstance()->action('SELECT interestName, interestID', 'Interests', array('1', '=', '1'))->results();
+                                            
+                                    ?>
+                                    <?php foreach ($interests as $interest) { ?>
+                                    <option value="<?php echo $interest->interestID; ?>"<?php echo (in_array($interest->interestID, $userInterestsSimple)) ? ' selected="selected"' : ''; ?>><?php echo $interest->interestName; ?></option>
+                                    <?php } ?>  
+                        </select>
                     </div>
                 </div>
 

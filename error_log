@@ -2063,3 +2063,88 @@ Stack trace:
 [01-Apr-2018 19:59:23 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
 [01-Apr-2018 19:59:33 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
 [01-Apr-2018 19:59:33 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[01-Apr-2018 20:02:21 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:02:30 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:02:30 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[01-Apr-2018 20:03:53 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:04:03 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:04:03 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[01-Apr-2018 20:04:03 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:04:03 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:08:30 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:08:35 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[01-Apr-2018 20:08:35 Europe/London] PHP Notice:  Undefined property: Validate::$_errors in /home/virtusbc/dating.virtusb.com/classes/Validate.php on line 108
+[01-Apr-2018 20:08:35 Europe/London] PHP Notice:  Undefined index: admin in /home/virtusbc/dating.virtusb.com/classes/User.php on line 103
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:26:06 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:27:11 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/virtusbc/dating.virtusb.com/opdater.php on line 142
+[01-Apr-2018 20:36:06 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 130
+[01-Apr-2018 20:36:53 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:38:07 Europe/London] PHP Notice:  Undefined index: interestID in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:38:07 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:39:11 Europe/London] PHP Notice:  Trying to get property of non-object in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:39:11 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:40:44 Europe/London] PHP Notice:  Undefined index: interestID in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:40:44 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:41:16 Europe/London] PHP Notice:  Undefined index: interestId in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:41:16 Europe/London] PHP Notice:  Undefined index: interestID in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:41:16 Europe/London] PHP Warning:  array_intersect(): Argument #1 is not an array in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:41:59 Europe/London] PHP Notice:  Undefined index: interestID in /home/virtusbc/dating.virtusb.com/opdater.php on line 134
+[01-Apr-2018 20:41:59 Europe/London] PHP Recoverable fatal error:  Object of class stdClass could not be converted to string in /home/virtusbc/dating.virtusb.com/opdater.php on line 134

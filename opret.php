@@ -219,7 +219,7 @@ if (Input::exists()) {
                                     <?php foreach ($interests as $interest) { ?>
                                     <option value="<?php echo $interest->interestID; ?>"<?php echo (isset($_POST['interest_select']) && in_array($interest->interestID, $_POST['interest_select'])) ? ' selected="selected"' : ''; ?>><?php echo $interest->interestName; ?></option>
                                     <?php } ?>  
-             </select>
+                        </select>
               </div>
                     </div>
 
