@@ -73,10 +73,17 @@ if (Input::exists()) {
             ),
             'img_input' => array(
                 'name' => 'Profil billede'
+            ),
+            'interest_select' => array(
+                'name' => 'Interessser'
             )
         ));
 
-        if ($validation->passed()) {
+        // tjek om der er valgt en interesse
+        // 'required' => true virkede ikke
+        if (empty(Input::get('interest_select'))) {
+            echo "<p class='form-validation-error'>Du skal mindst vælge 1 interesse</p> ";
+        } else if ($validation->passed()) {
             $user = new User();
 
             try {
@@ -94,7 +101,25 @@ if (Input::exists()) {
                     'age' => Input::getDate(Input::get('age')),
                     'profileBio' => ucfirst(Input::get('bio_input')),
                     'imageFile' => Input::getImage('img_input')
-                ));        
+                ));
+                
+                // bør bruge DB::getInstance i stedet
+                $dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                
+                function getUserID($dbh, $input) {
+                    $sql = 'SELECT id FROM Users WHERE username = "'. $input .'" ';
+                    foreach ($dbh->query($sql) as $row) {
+                        return $row['id'];
+                    }
+                }
+                
+                $userId = getUserID($dbh, Input::get('username'));            
+
+                $interests = Input::get('interest_select');
+                foreach ($interests as $interest) {
+                    DB::getInstance()->query('INSERT INTO RS_ProfileInterests (interestId, userId) VALUES ('. $interest .',  '. $userId .')');
+                }
+               
                 
                 $EmailSender = new EmailSender();
                 $EmailSender->sendWelcomeEmail();
@@ -173,21 +198,29 @@ if (Input::exists()) {
                             <select onchange="saveSelected(this.value, 'region-select', 'regionVal');" name="region_select" id="region-select">
                                 <option value="" disabled="disabled" selected="selected">Region</option>
                                 <?php
-                                    $regions = DB::getInstance()->action('SELECT regionName, regionID', 'Regions', array('1', '=', '1'))->results();
-                                    foreach ($regions as $region) {
-                                        echo "<option value='{$region->regionID}'  >$region->regionName</option>";
-                                    }
-                                ?>
+                                $regions = DB::getInstance()->action('SELECT regionName, regionID', 'Regions', array('1', '=', '1'))->results();
+                                foreach ($regions as $region) {
+                                    echo "<option value='{$region->regionID}'>$region->regionName</option>";
+                                }
+                                ?>                         
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s6">
-                        <div class="input-field col s12 city-div">
-                            <input id="city" name="city" type="text" class="validate" autocomplete="off" value="<?php echo escape(Input::get('city')); ?>">
-                            <label for="city">By</label>
-                        </div>
+                        
+                        <div class="input-field col s12">
+                        <select multiple="multiple" name="interest_select[]" id="interest-select">
+                                <option value="" disabled="disabled" selected="selected">Interesser</option>
+                                <?php
+                                    $interests = DB::getInstance()->action('SELECT interestName, interestID', 'Interests', array('1', '=', '1'))->results();
+                                    ?>
+                                    <?php foreach ($interests as $interest) { ?>
+                                    <option value="<?php echo $interest->interestID; ?>"<?php echo (isset($_POST['interest_select']) && in_array($interest->interestID, $_POST['interest_select'])) ? ' selected="selected"' : ''; ?>><?php echo $interest->interestName; ?></option>
+                                    <?php } ?>  
+             </select>
+              </div>
                     </div>
 
                     <div class="col s6">
@@ -219,6 +252,13 @@ if (Input::exists()) {
                                 <input type="text" id="age" name="age" class="birthday-picker-input" value="<?php echo escape(Input::get('age')); ?>">
                     <label for="age">Fødselsdato</label>
                         </div>
+              </div>
+
+              <div class="row">
+              <div class="input-field col s12 city-div">
+                            <input id="city" name="city" type="text" class="validate" autocomplete="off" value="<?php echo escape(Input::get('city')); ?>">
+                            <label for="city">By</label>
+                        </div>         
               </div>
 
 

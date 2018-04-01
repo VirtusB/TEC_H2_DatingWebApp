@@ -100,7 +100,7 @@ class Validate {
         return $this;
     }
 
-    private function addError($error) {
+    public function addError($error) {
         $this->_errors[] = $error;
     }
 
