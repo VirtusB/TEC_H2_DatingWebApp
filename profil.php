@@ -275,7 +275,29 @@ echo '<p>', $e->getMessage(), '</p>';
 
         <div class="col s10">
         <div class="row profile-name-age-row">
-            <p class="name-paragraph"></p>
+            <div class="col s2">
+            <a id="like-link" href="">
+            <i id="like-profile-btn" title="Synes godt om" class="fa fa-thumbs-up profile-thumbs"></i>
+            <script>
+            $("#like-link").on("click", function(event) {
+                event.preventDefault();
+            });
+            </script>
+            </a>
+            </div>
+            <div class="col s8">
+            <p class="name-paragraph"></p>            
+            </div>
+            <div class="col s2">
+            <a id="dislike-link" href="">
+            <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
+            <script>
+            $("#dislike-link").on("click", function(event) {
+                event.preventDefault();
+            });
+            </script>
+            </a>
+            </div>
         </div>
         <div class="row">
             <div class="col s6 profile-image-row">

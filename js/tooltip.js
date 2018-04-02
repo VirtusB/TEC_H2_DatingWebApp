@@ -11,3 +11,15 @@ $(document).ready(function() {
         position: { my: "left top+15", at: "left bottom", collision: "none" }
     });
 });
+
+$( "#like-profile-btn" ).tooltip({
+    tooltipClass: "dislike-profile-tooltip",
+    track: true,
+    position: { my: "left top+15", at: "right bottom", collision: "none" }
+});
+
+$( "#dislike-profile-btn" ).tooltip({
+    tooltipClass: "like-profile-tooltip",
+    track: true,
+    position: { my: "left top+15", at: "right bottom", collision: "none" }
+});
