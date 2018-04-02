@@ -58,6 +58,7 @@ if (Input::exists()) {
             )
         ));
 
+        // interesse tjek er seperat fra resten af valideringen
         if (empty(Input::get('interest_select'))) {
             echo "<p class='form-validation-error'>Du skal mindst vælge 1 interesse</p> ";
         } else if($validation->passed()) {
@@ -76,6 +77,7 @@ if (Input::exists()) {
                 // slet nuværende interesser
                 DB::getInstance()->query('DELETE FROM RS_ProfileInterests WHERE userId = '. $user->data()->id .' ');
 
+                // indsæt interesser
                 $interests = Input::get('interest_select');
                 foreach ($interests as $interest) {
                     DB::getInstance()->query('INSERT INTO RS_ProfileInterests (interestId, userId) VALUES ('. $interest .',  '. $user->data()->id .')');

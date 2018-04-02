@@ -106,6 +106,7 @@ if (Input::exists()) {
                 // bør bruge DB::getInstance i stedet
                 $dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 
+                // få id på den bruger som lige er blevet oprettet
                 function getUserID($dbh, $input) {
                     $sql = 'SELECT id FROM Users WHERE username = "'. $input .'" ';
                     foreach ($dbh->query($sql) as $row) {
@@ -115,6 +116,7 @@ if (Input::exists()) {
                 
                 $userId = getUserID($dbh, Input::get('username'));            
 
+                // indsæt interesserne på brugeren
                 $interests = Input::get('interest_select');
                 foreach ($interests as $interest) {
                     DB::getInstance()->query('INSERT INTO RS_ProfileInterests (interestId, userId) VALUES ('. $interest .',  '. $userId .')');
