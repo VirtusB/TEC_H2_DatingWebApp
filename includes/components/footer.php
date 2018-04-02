@@ -4,7 +4,7 @@
             <div class="col s6 footer-logo-div">
               <!-- <h5 class="white-text">Footer Content</h5> -->
               <!-- <p class="grey-text text-lighten-4"></p> -->
-              <img class="footer-logo" src="images/heart.png">
+              <img class="footer-logo" width="147px" height="111px" src="images/heart.png">
             </div>
             <div class="col s4 right-footer-side">
               <h5 class="white-text footer-title">Links</h5>

@@ -11,8 +11,7 @@
     <script src="js/jsCookie.js"></script>
     <link rel="stylesheet" href="alertify/css/alertify.min.css">
     <link rel="stylesheet" href="alertify/css/themes/default.min.css">
-    <script src="alertify/js/alertify.min.js"></script>
-    <script src="js/functions/resizeEvent.js"></script>
+    <script async src="alertify/js/alertify.min.js"></script>
     <script src="materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="fontawesome\css\fontawesome-all.min.css">
     <link rel="stylesheet" href="materialize/extras/noUiSlider/nouislider.css">
@@ -25,8 +24,8 @@
     <title>Dating App</title>
     <!-- Cookie consent -->
     <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
-    <script src="js/cookieconsent.min.js"></script>
-    <script src="js/cookieNotice.js"></script>
+    <script async src="js/cookieconsent.min.js"></script>
+    <script async src="js/cookieNotice.js"></script>
 </head>
 <?php
 $user = new User(); // current user
