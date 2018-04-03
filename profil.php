@@ -164,26 +164,53 @@ echo '<div style="display:none;" id="paging"><p>', $prevlink, '  ' ,$nextlink, '
 
 // Prepare the paged query
 // tilføj WHERE NOT id, $data-id er ligmed den nuværende bruger's id, brugeren som er logget ind
-$sexSelect = $_POST['sex_select'];
-$regionSelect = $_POST['region_select'];
-$interestSelect = $_POST['interest_select'];
-$minAge = $_POST['ageMin'];
-$maxAge = $_POST['ageMax'];
 
-    if(empty($sexSelect)) {
+// gem POST data i variabler
+$sexSelectPost = $_POST['sex_select'];
+$regionSelectPost = $_POST['region_select'];
+$interestSelectPost = $_POST['interest_select'];
+$minAgePost = $_POST['ageMin'];
+$maxAgePost = $_POST['ageMax'];
+
+
+
+// gem POST data i sessionen, så vi kan huske filtreringen efter reload af siden
+if (!empty($sexSelectPost) && $sexSelectPost != $_SESSION['sexSelectFilter']) {
+    $_SESSION['sexSelectFilter'] = $sexSelectPost;
+    $sexSelectSession = $_SESSION['sexSelectFilter'];
+}
+if (!empty($regionSelectPost) && $regionSelectPost != $_SESSION['regionSelectFilter']) {
+    $_SESSION['regionSelectFilter'] = $regionSelectPost;
+    $regionSelectSession = $_SESSION['regionSelectFilter'];
+}
+if (!empty($interestSelectPost) && $interestSelectPost != $_SESSION['interestSelectFilter']) {
+    $_SESSION['interestSelectFilter'] = $interestSelectPost;
+    $interestSelectSession = $_SESSION['interestSelectFilter'];
+}
+if (!empty($minAgePost) && $minAgePost != $_SESSION['minAgeFilter']) {
+    $_SESSION['minAgeFilter'] = $minAgePost;
+    $minAgeSession = $_SESSION['minAgeFilter'];
+}
+if (!empty($maxAgePost) && $maxAgePost != $_SESSION['sexSelectFilter']) {
+    $_SESSION['maxAgeFilter'] = $maxAgePost;
+    $maxAgeSession = $_SESSION['maxAgeFilter'];
+}
+
+
+    if(empty($sexSelectSession)) {
         $sexSel1 = 0;
         $sexSel2 = 1;
-    } else if ($sexSelect == 1) {
+    } else if ($sexSelectSession == 1) {
         $sexSel1 = 1;
         $sexSel2 = 1;
-    } else if ($sexSelect == 0) {
+    } else if ($sexSelectSession == 0) {
         $sexSel1 = 0;
         $sexSel2 = 0;
     }
 
 
-if (empty($_POST)) {
-    echo 'kør normal query';
+if (empty($sexSelectSession) && empty($regionSelectSession) && empty($interestSelectSession) && empty($minAgeSession) && empty($maxAgeSession)) {
+    echo 'kør normal query test';
     $stmt = $dbh->prepare('
     SELECT
         *
@@ -201,7 +228,7 @@ if (empty($_POST)) {
     OFFSET
         :offset
 ');
-} else if (empty($regionSelect) && empty($interestSelect)) {
+} else if (empty($regionSelectSession) && empty($interestSelectSession)) {
     echo 'empty region og empty interest';
     
     $stmt = $dbh->prepare('
@@ -209,7 +236,7 @@ if (empty($_POST)) {
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' AND '.$maxAge.'
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAgeSession.' AND '.$maxAgeSession.'
 AND     NOT(id = ' . $data->id . ')
 AND     sex BETWEEN '.$sexSel1.' AND '.$sexSel2.'
 AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
@@ -220,13 +247,13 @@ AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
     OFFSET
         :offset
 ');
-} else if (empty($regionSelect) && !empty($interestSelect)) {
+} else if (empty($regionSelectSession) && !empty($interestSelectSession)) {
     echo 'kør empty region og ikke empty interest';
 
-} else if (empty($interestSelect) && !empty($regionSelect)) {
+} else if (empty($interestSelectSession) && !empty($regionSelectSession)) {
     echo 'kør empty interest og ikke empty region';
 
-} else if (!empty($regionSelect) && !empty($interestSelect)) {
+} else if (!empty($regionSelectSession) && !empty($interestSelectSession)) {
     echo 'kør ikke empty region og ikke empty interest';
 
 }
