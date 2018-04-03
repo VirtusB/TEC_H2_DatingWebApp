@@ -129,13 +129,27 @@ INSERT INTO Users (username, userpassword, name, joined, usergroup, countryId, r
 -- Kommando til at vise om et table har en PRIMARY KEY
 -- SHOW INDEXES FROM $table WHERE Key_name = 'PRIMARY'
 
+/*SELECT *
+FROM profiles qPro 
+FULL JOIN Users qUse ON qPro.userID = qUse.userID 
+FULL JOIN Images qImg ON qPro.userID = qImg.userID 
+FULL JOIN RS_ProfileInterests qRS ON qRS.profileID = qPro.profileID 
+FULL JOIN Interests qInt ON qInt.interestID = qRS.interestId 
+FULL JOIN Regions qReg ON qReg.RegionID = qPro.RegionId
+WHERE qInt.interestID = (SELECT interestID FROM Interests WHERE interestName = @intSel) 
+AND qPro.age BETWEEN @ageSel1 AND @ageSel2 
+AND qPro.sex BETWEEN @sexSel1 AND @sexSel2
+AND qUse.UserID != @uID" */
+
 /*
 -- empty Region, empty Interest
 
 SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
+LEFT JOIN Matches ON Users.id = Matches.match_from_id
 WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     NOT (id=1)
 AND     sex BETWEEN 0 and 1
 
 
@@ -146,7 +160,9 @@ FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
 LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+LEFT JOIN Matches ON Users.id = Matches.match_from_id
 WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     NOT (id=1)
 AND     sex BETWEEN 0 and 1
 AND     RS_ProfileInterests.interestId IN(1,2,3,)
 
@@ -157,7 +173,9 @@ FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
 LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+LEFT JOIN Matches ON Users.id = Matches.match_from_id
 WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     NOT (id=1)
 AND     sex BETWEEN 0 and 1
 AND     Users.regionid = 1
 
@@ -168,8 +186,11 @@ FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
 LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+LEFT JOIN Matches ON Users.id = Matches.match_from_id
 WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     NOT (id=1)
 AND     sex BETWEEN 0 and 1
 AND     Users.regionid = 2
 AND     RS_ProfileInterests.interestId IN(1,2,3)
 */
+
