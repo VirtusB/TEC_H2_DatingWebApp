@@ -2638,3 +2638,27 @@ Stack trace:
 [02-Apr-2018 20:43:12 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
 [02-Apr-2018 20:43:14 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
 [02-Apr-2018 20:43:14 Europe/London] PHP Notice:  Undefined property: User::$_isLoggedIn in /home/virtusbc/dating.virtusb.com/classes/User.php on line 126
+[03-Apr-2018 09:50:26 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 09:50:37 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 09:51:56 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 10:15:23 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 10:20:56 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 10:30:03 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function bindParam() on null in /home/virtusbc/dating.virtusb.com/profil.php:197
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197

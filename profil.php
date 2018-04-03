@@ -59,6 +59,8 @@ if(!$user->isLoggedIn()) {
             <div class="col s3"></div>
         </div> <!-- køn, region og interesser row -->
 
+        <?php var_dump($_POST); ?>
+
         <div class="row age-slider-row valign-wrapper">
             <div class="col s3"></div>
             <div class="col s4">
@@ -78,9 +80,14 @@ if(!$user->isLoggedIn()) {
                         'min': 18,
                         'max': 99
                     },
-                    format: wNumb({
-                        decimals: 0
-                    })
+                    format: {
+                        to: function ( value ) {
+                            return value.toFixed(0);
+                        },
+                        from: function ( value ) {
+                          return value.replace(',-', '');
+                        }
+                      }
                 });
 
                     var ageslider = document.getElementById("age-slider");
@@ -157,12 +164,36 @@ echo '<div style="display:none;" id="paging"><p>', $prevlink, '  ' ,$nextlink, '
 
 // Prepare the paged query
 // tilføj WHERE NOT id, $data-id er ligmed den nuværende bruger's id, brugeren som er logget ind
-$stmt = $dbh->prepare('
+$sexSelect = $_POST['sex_select'];
+$regionSelect = $_POST['region_select'];
+$interestSelect = $_POST['interest_select'];
+$minAge = $_POST['ageMin'];
+$maxAge = $_POST['ageMax'];
+
+    if(empty($sexSelect)) {
+        $sexSel1 = 0;
+        $sexSel2 = 1;
+    } else if ($sexSelect == 1) {
+        $sexSel1 = 1;
+        $sexSel2 = 1;
+    } else if ($sexSelect == 0) {
+        $sexSel1 = 0;
+        $sexSel2 = 0;
+    }
+
+
+if (empty($_POST)) {
+    echo 'kør normal query';
+    $stmt = $dbh->prepare('
     SELECT
         *
     FROM
         Users
-    WHERE NOT(id = ' . $data->id . ')
+        LEFT JOIN Regions ON Regions.regionID = Users.regionId
+        LEFT JOIN Matches ON Users.id = Matches.match_from_id
+        WHERE
+        NOT(id = ' . $data->id . ')
+        AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
     ORDER BY
         name
     LIMIT
@@ -170,6 +201,39 @@ $stmt = $dbh->prepare('
     OFFSET
         :offset
 ');
+} else if (empty($regionSelect) && empty($interestSelect)) {
+    echo 'empty region og empty interest';
+    
+    $stmt = $dbh->prepare('
+    SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex, age
+FROM Users
+LEFT JOIN Regions ON Regions.regionID = Users.regionId
+LEFT JOIN Matches ON Users.id = Matches.match_from_id
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' AND '.$maxAge.'
+AND     NOT(id = ' . $data->id . ')
+AND     sex BETWEEN '.$sexSel1.' AND '.$sexSel2.'
+AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
+    ORDER BY
+        name
+    LIMIT
+        :limit
+    OFFSET
+        :offset
+');
+} else if (empty($regionSelect) && !empty($interestSelect)) {
+    echo 'kør empty region og ikke empty interest';
+
+} else if (empty($interestSelect) && !empty($regionSelect)) {
+    echo 'kør empty interest og ikke empty region';
+
+} else if (!empty($regionSelect) && !empty($interestSelect)) {
+    echo 'kør ikke empty region og ikke empty interest';
+
+}
+
+
+
+
 
 // Bind the query params
 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -219,6 +283,8 @@ if ($page < $pages) {
 
 
 
+
+
 // Do we have any results?
 if ($stmt->rowCount() > 0) {
     // Define how we want to fetch the results
@@ -228,7 +294,15 @@ if ($stmt->rowCount() > 0) {
     // Display the results
     foreach ($iterator as $row) {
         $birth_date = $row['age'];
-        $age= date("Y") - date("Y", strtotime($birth_date));
+        $now = date("Y-m-d");
+
+        $birth_date = strtotime($birth_date);
+        $now = strtotime($now);
+
+
+        //$age= date("Y") - date("Y", strtotime($birth_date)); backup
+
+        $age = floor(($now - $birth_date) / 3600 / 24 / 365.25); 
 
         $joined = $row['joined'];
         $userjoined =  strftime("%d. %B, %Y", strtotime($joined));
@@ -236,8 +310,22 @@ if ($stmt->rowCount() > 0) {
         $country = getCountry($dbh, $row['id']);
         $region = getRegion($dbh, $row['id']);
         
+        $userInterests = DB::getInstance()->action('SELECT interestName', 'Interests JOIN RS_ProfileInterests ON Interests.interestID = RS_ProfileInterests.interestId', array('userId', '=', ' '. $row['id'] .' '))->results();
+        
+        $userInterestsSimple = array();
+        foreach($userInterests as $userInterest) {
+           $userInterestsSimple[] = $userInterest->interestName;
+         }
 
-        echo '<script type="text/javascript">$(document).ready(function(){ 
+         foreach ($userInterestsSimple as $simpleInterest) {
+             echo '<li style="display: none;" class="single-user-interest">'. $simpleInterest .'</li>';
+             echo '<script type="text/javascript">$(document).ready(function(){
+                $(".interests-ul").append($(".single-user-interest"));
+              })</script>';
+         }
+                      
+
+        echo '<script type="text/javascript">$(document).ready(function(){           
             $(".name-paragraph").append(" ' . $row['name'] . ", " . $age . " år" .' ");
             $(".profile-image").attr("src", "data:image/gif;base64,' . $row['imageFile'] .'");
             $("#user-since").append("' . "Bruger siden " . $userjoined .'");
@@ -249,6 +337,7 @@ if ($stmt->rowCount() > 0) {
             $("#user-country-region").prepend("' . $country .'");
             $("#user-country-region").append("' . $region .'");
             $("#user-id-to-message").val("' . $row['id'] .'");
+            $(".single-user-interest").css("display", "list-item");
             
                  
         })</script>';
@@ -276,10 +365,10 @@ echo '<p>', $e->getMessage(), '</p>';
         <div class="col s10">
         <div class="row profile-name-age-row">
             <div class="col s2">
-            <a id="like-link" href="">
-            <i id="like-profile-btn" title="Synes godt om" class="fa fa-thumbs-up profile-thumbs"></i>
+            <a id="dislike-link" href="">
+            <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
             <script>
-            $("#like-link").on("click", function(event) {
+            $("#dislike-link").on("click", function(event) {
                 event.preventDefault();
             });
             </script>
@@ -289,10 +378,10 @@ echo '<p>', $e->getMessage(), '</p>';
             <p class="name-paragraph"></p>            
             </div>
             <div class="col s2">
-            <a id="dislike-link" href="">
-            <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
+            <a id="like-link" href="">
+            <i id="like-profile-btn" title="Synes godt om" class="fa fa-thumbs-up profile-thumbs"></i>
             <script>
-            $("#dislike-link").on("click", function(event) {
+            $("#like-link").on("click", function(event) {
                 event.preventDefault();
             });
             </script>
@@ -386,12 +475,7 @@ echo '<p>', $e->getMessage(), '</p>';
                 <h6 class="user-interests-h6">'s interesser</h6>
                 <div class="divider interests-divider"></div>
                 <ul class="interests-ul">
-                 <li>Skating</li>
-                 <li>Badeferier</li>
-                 <li>Litteratur</li>
-                 <li>Biler</li>
-                 <li>Pizza</li>
-                 <li>Fiskeri</li>
+
                 </ul>
                 </div>
              
