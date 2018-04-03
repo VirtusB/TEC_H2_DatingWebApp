@@ -112,7 +112,14 @@ CREATE TABLE Messages (
 	msg_to_id int(11),
 	msg_body text,
 	msg_date datetime
-)
+);
+
+CREATE TABLE Matches (
+	matchid int(11) AUTO_INCREMENT PRIMARY KEY,
+	match_from_id int(11),
+	match_to_id int(11),
+	status int(11)
+);
 
 INSERT INTO groups (groupName, permissions) values ('Standard user', '{"standard": 1}'); 
 INSERT INTO groups (groupName, permissions) values ('Administrator', '{"admin": 1}');
