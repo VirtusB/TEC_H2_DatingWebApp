@@ -116,6 +116,7 @@ CREATE TABLE Messages (
 
 CREATE TABLE Matches (
 	matchid int(11) AUTO_INCREMENT PRIMARY KEY,
+	matchdate datetime,
 	match_from_id int(11),
 	match_to_id int(11),
 	status int(11)
