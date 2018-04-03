@@ -128,3 +128,48 @@ INSERT INTO Users (username, userpassword, name, joined, usergroup, countryId, r
 
 -- Kommando til at vise om et table har en PRIMARY KEY
 -- SHOW INDEXES FROM $table WHERE Key_name = 'PRIMARY'
+
+/*
+-- empty Region, empty Interest
+
+SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+FROM Users
+LEFT JOIN Regions ON Regions.regionID = Users.regionId
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     sex BETWEEN 0 and 1
+
+
+-- Empty Region, not empty Interest
+
+SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+FROM Users
+LEFT JOIN Regions ON Regions.regionID = Users.regionId
+LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
+LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     sex BETWEEN 0 and 1
+AND     RS_ProfileInterests.interestId IN(1,2,3,)
+
+-- Not empty Region, Empty Interest
+
+SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+FROM Users
+LEFT JOIN Regions ON Regions.regionID = Users.regionId
+LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
+LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     sex BETWEEN 0 and 1
+AND     Users.regionid = 1
+
+-- Not empty Region, Not empty Interest
+
+SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+FROM Users
+LEFT JOIN Regions ON Regions.regionID = Users.regionId
+LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
+LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
+AND     sex BETWEEN 0 and 1
+AND     Users.regionid = 2
+AND     RS_ProfileInterests.interestId IN(1,2,3)
+*/
