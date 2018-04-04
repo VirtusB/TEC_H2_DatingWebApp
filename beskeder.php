@@ -19,12 +19,17 @@ if(!$user->isLoggedIn()) {
     text-align: center;
 }
 
+.beskeder-div {
+    margin-top: 5%;
+}
+
 </style>
 
 <div class="row">
 <div class="col s2"></div>
-<div class="col s8">
+<div class="col s8 beskeder-div">
 <h3 class="message-h3">Beskeder</h3>
+<p style="text-align: center;" id="deleted-success-message"></p>
 
 <table class="highlight centered">
         <thead>
@@ -46,6 +51,7 @@ $stmt = $dbh->prepare('
     FROM
         Messages
     WHERE msg_to_id = ' . $data->id . '
+    ORDER BY msg_date DESC
 ');
 
 $stmt->execute();
@@ -73,12 +79,14 @@ if ($stmt->rowCount() > 0) {
         $msg_date = date("d/m/y H:i:s", $msg_date);
 
         echo '
-        <tr>
+        <tr class="table-row-'.$row['id'].'">
             <input type="hidden" id="msg_from_id" value="'. $row['msg_from_id'] .'">
             <td>'. getFromName($dbh, $row['msg_from_id']) .'</td>
             <td>'. $msg_date .'</td>
             <td>
-            <a class="modal-trigger" href="#message-modal'.$x.'">Vis</a>
+            <a class="modal-trigger" href="#message-modal'.$row['id'].'">Vis</a>
+            <a style="margin-left:3%;" class="" id="DeleteMessage'.$row['id'].'" href="#">Slet</a>
+            <input type="hidden" id="msg_id'.$row['id'].'" value="'.$row['id'].'">
             <div id="message-modal'.$x.'" class="modal">
                 <div class="modal-content">
                 <h4>Besked fra '. getFromName($dbh, $row['msg_from_id']) .'</h4>
@@ -94,8 +102,34 @@ if ($stmt->rowCount() > 0) {
 
         <script type="text/javascript">
         $(document).ready(function() {
-        $("#message-modal'.$x.'").modal();
+
+        $("#message-modal'.$row['id'].'").modal();
+
+        $("#DeleteMessage'.$row['id'].'").on("click", function(e) {
+            e.preventDefault();
+            console.log("slet besked '.$row['id'].' ");
+            var msg_id = document.getElementById("msg_id'.$row['id'].'").value;
+
+            var dataString = "message_to_delete=" + msg_id;
+            $.ajax({
+                type: "POST",
+                url: "delete-message.php",
+                data: dataString,
+                cache: false,
+                success: function(data) {
+                  $("#deleted-success-message").html(data);
+                  $(".table-row-'.$row['id'].'").fadeOut("slow");
+                  alertify.notify("Besked slettet", "custom", 4, function(){console.log("dismissed");});                  
+                },
+                error: function(err) {
+                  alert(err);
+                }
+              });
         });
+
+        });
+
+        
         </script>
         ';
         

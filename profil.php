@@ -59,7 +59,7 @@ if(!$user->isLoggedIn()) {
             <div class="col s3"></div>
         </div> <!-- køn, region og interesser row -->
 
-        <?php var_dump($_POST); ?>
+       
 
         <div class="row age-slider-row valign-wrapper">
             <div class="col s3"></div>
@@ -173,44 +173,19 @@ $minAgePost = $_POST['ageMin'];
 $maxAgePost = $_POST['ageMax'];
 
 
-
-// gem POST data i sessionen, så vi kan huske filtreringen efter reload af siden
-if (!empty($sexSelectPost) && $sexSelectPost != $_SESSION['sexSelectFilter']) {
-    $_SESSION['sexSelectFilter'] = $sexSelectPost;
-    $sexSelectSession = $_SESSION['sexSelectFilter'];
-}
-if (!empty($regionSelectPost) && $regionSelectPost != $_SESSION['regionSelectFilter']) {
-    $_SESSION['regionSelectFilter'] = $regionSelectPost;
-    $regionSelectSession = $_SESSION['regionSelectFilter'];
-}
-if (!empty($interestSelectPost) && $interestSelectPost != $_SESSION['interestSelectFilter']) {
-    $_SESSION['interestSelectFilter'] = $interestSelectPost;
-    $interestSelectSession = $_SESSION['interestSelectFilter'];
-}
-if (!empty($minAgePost) && $minAgePost != $_SESSION['minAgeFilter']) {
-    $_SESSION['minAgeFilter'] = $minAgePost;
-    $minAgeSession = $_SESSION['minAgeFilter'];
-}
-if (!empty($maxAgePost) && $maxAgePost != $_SESSION['sexSelectFilter']) {
-    $_SESSION['maxAgeFilter'] = $maxAgePost;
-    $maxAgeSession = $_SESSION['maxAgeFilter'];
-}
-
-
-    if(empty($sexSelectSession)) {
+    if(empty($sexSelectPost)) {
         $sexSel1 = 0;
         $sexSel2 = 1;
-    } else if ($sexSelectSession == 1) {
+    } else if ($sexSelectPost == 1) {
         $sexSel1 = 1;
         $sexSel2 = 1;
-    } else if ($sexSelectSession == 0) {
+    } else if ($sexSelectPost == 0) {
         $sexSel1 = 0;
         $sexSel2 = 0;
     }
 
 
-if (empty($sexSelectSession) && empty($regionSelectSession) && empty($interestSelectSession) && empty($minAgeSession) && empty($maxAgeSession)) {
-    echo 'kør normal query test';
+if (empty($_POST)) {
     $stmt = $dbh->prepare('
     SELECT
         *
@@ -228,15 +203,14 @@ if (empty($sexSelectSession) && empty($regionSelectSession) && empty($interestSe
     OFFSET
         :offset
 ');
-} else if (empty($regionSelectSession) && empty($interestSelectSession)) {
-    echo 'empty region og empty interest';
+} else if (empty($regionSelectPost) && empty($interestSelectPost)) {
     
     $stmt = $dbh->prepare('
     SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex, age
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAgeSession.' AND '.$maxAgeSession.'
+WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAgePost.' AND '.$maxAgePost.'
 AND     NOT(id = ' . $data->id . ')
 AND     sex BETWEEN '.$sexSel1.' AND '.$sexSel2.'
 AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
@@ -247,18 +221,16 @@ AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
     OFFSET
         :offset
 ');
-} else if (empty($regionSelectSession) && !empty($interestSelectSession)) {
-    echo 'kør empty region og ikke empty interest';
+} else if (empty($regionSelectPost) && !empty($interestSelectSession)) {
+
 
 } else if (empty($interestSelectSession) && !empty($regionSelectSession)) {
-    echo 'kør empty interest og ikke empty region';
+
 
 } else if (!empty($regionSelectSession) && !empty($interestSelectSession)) {
-    echo 'kør ikke empty region og ikke empty interest';
+    
 
 }
-
-
 
 
 
@@ -453,8 +425,12 @@ echo '<p>', $e->getMessage(), '</p>';
                         <textarea id="profileMessageInput" class="materialize-textarea validate" data-length="150"></textarea>
                         <p id="success-message"></p>
                         <script>
+                        function encodeHTML(s) {
+                            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+                        }
+
                         function profileSendMessage() {
-                            var message = document.getElementById("profileMessageInput").value;
+                            var message = encodeHTML(document.getElementById("profileMessageInput").value);
                             var msg_to_id = document.getElementById("user-id-to-message").value;
                             var msg_from_id = document.getElementById("user-id-from-message").value;
 
@@ -467,7 +443,7 @@ echo '<p>', $e->getMessage(), '</p>';
                             if (message == "") {
                                 alertify.alert('Fejl', "Du er nød til at indtaste en besked", function() {
                                     alertify.message("OK");
-                                });
+                                });$(".table-row-'.$message_to_delete.'").fadeOut("slow");
                             } else {
                               $.ajax({
                                 type: "POST",

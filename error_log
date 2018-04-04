@@ -2662,3 +2662,36 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/virtusbc/dating.virtusb.com/profil.php on line 197
+[03-Apr-2018 13:04:23 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, string given in /home/virtusbc/dating.virtusb.com/profil.php on line 302
+[03-Apr-2018 13:04:28 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, string given in /home/virtusbc/dating.virtusb.com/profil.php on line 302
+[03-Apr-2018 13:04:47 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, string given in /home/virtusbc/dating.virtusb.com/profil.php on line 302
+[03-Apr-2018 13:05:36 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, string given in /home/virtusbc/dating.virtusb.com/profil.php on line 302
+[03-Apr-2018 13:06:46 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, integer given in /home/virtusbc/dating.virtusb.com/profil.php on line 305
+[03-Apr-2018 13:06:50 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, integer given in /home/virtusbc/dating.virtusb.com/profil.php on line 305
+[03-Apr-2018 13:06:52 Europe/London] PHP Warning:  date_diff() expects parameter 1 to be DateTimeInterface, integer given in /home/virtusbc/dating.virtusb.com/profil.php on line 305
+[03-Apr-2018 13:13:20 Europe/London] PHP Warning:  floor() expects exactly 1 parameter, 2 given in /home/virtusbc/dating.virtusb.com/profil.php on line 305
+[03-Apr-2018 20:15:33 Europe/London] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/virtusbc/dating.virtusb.com/profil.php on line 260
+[03-Apr-2018 20:15:37 Europe/London] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/virtusbc/dating.virtusb.com/profil.php on line 260
+[04-Apr-2018 07:29:50 Europe/London] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/virtusbc/dating.virtusb.com/profil.php on line 260
+[04-Apr-2018 07:42:41 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 18
+[04-Apr-2018 07:42:41 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_fetch_object() in /home/virtusbc/dating.virtusb.com/saveData.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/saveData.php on line 30
+[04-Apr-2018 07:43:02 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 18
+[04-Apr-2018 07:43:02 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_fetch_object() in /home/virtusbc/dating.virtusb.com/saveData.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/saveData.php on line 30
+[04-Apr-2018 07:43:38 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 18
+[04-Apr-2018 07:43:38 Europe/London] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 30
+[04-Apr-2018 07:44:11 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 18
+[04-Apr-2018 07:44:11 Europe/London] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 30
+[04-Apr-2018 07:44:46 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 10
+[04-Apr-2018 07:44:46 Europe/London] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 22
+[04-Apr-2018 07:45:06 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 10
+[04-Apr-2018 07:45:06 Europe/London] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/virtusbc/dating.virtusb.com/saveData.php on line 22
+[04-Apr-2018 07:45:29 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function push() in /home/virtusbc/dating.virtusb.com/saveData.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/virtusbc/dating.virtusb.com/saveData.php on line 23
