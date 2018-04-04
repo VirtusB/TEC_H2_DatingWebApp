@@ -111,7 +111,8 @@ CREATE TABLE Messages (
 	msg_from_id int(11),
 	msg_to_id int(11),
 	msg_body text,
-	msg_date datetime
+	msg_date datetime,
+	msg_read int(1) default 0
 );
 
 CREATE TABLE Matches (

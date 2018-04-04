@@ -23,3 +23,9 @@ $( "#dislike-profile-btn" ).tooltip({
     track: true,
     position: { my: "left top+15", at: "right bottom", collision: "none" }
 });
+
+$( "#age-slider" ).tooltip({
+    tooltipClass: "age-slider-tooltip",
+    track: true,
+    position: { my: "left top+15", at: "right bottom", collision: "none" }
+});

@@ -34,19 +34,23 @@ if(!$user->isLoggedIn()) {
     color: #039be5;
 }
 
+.message_read {
+    
+}
+
 </style>
 
 <div class="row">
 <div class="col s2"></div>
 <div class="col s8 beskeder-div">
 <h3 class="message-h3" id="inbox-message-count"><?php
-$messageCount = $dbh->query('SELECT COUNT(msg_to_id) as msgCount FROM Messages WHERE msg_to_id = '.$data->id.'')->fetch();
+$messageCount = $dbh->query('SELECT COUNT(msg_to_id) as msgCount FROM Messages WHERE msg_to_id = '.$data->id.' AND msg_read = 0')->fetch();
 if ($messageCount['msgCount'] == 0) {
     echo '0 beskeder';
 } else if ($messageCount['msgCount'] == 1) {
-    echo '1 besked';
+    echo '1 ulæst besked';
 } else {
-    echo $messageCount['msgCount'], ' beskeder';
+    echo $messageCount['msgCount'], ' ulæste beskeder';
 }
 ?></h3>
 <div id="inbox-control">
@@ -91,6 +95,7 @@ function(){
               <th>Fra</th>
               <th>Dato</th>
               <th>Handling</th>
+              <th>Status</th>
           </tr>
         </thead>
 
@@ -104,7 +109,7 @@ $stmt = $dbh->prepare('
     FROM
         Messages
     WHERE msg_to_id = ' . $data->id . '
-    ORDER BY msg_date DESC
+    ORDER BY msg_read ASC, msg_date DESC
 ');
 
 $stmt->execute();
@@ -131,8 +136,10 @@ if ($stmt->rowCount() > 0) {
         $msg_date = strtotime($row['msg_date']);
         $msg_date = date("d/m/y H:i:s", $msg_date);
 
+        
+
         echo '
-        <tr class="table-row-'.$row['id'].'">
+        <tr class= '. (($row['msg_read'] == 1) ?'"message_read"':"") .'  class="table-row-'.$row['id'].'">
             <input type="hidden" id="msg_from_id" value="'. $row['msg_from_id'] .'">
             <td>'. getFromName($dbh, $row['msg_from_id']) .'</td>
             <td>'. $msg_date .'</td>
@@ -141,7 +148,7 @@ if ($stmt->rowCount() > 0) {
             <a style="margin-left:3%;" class="" id="DeleteMessage'.$row['id'].'" href="#">Slet</a>
             <a style="margin-left:3%;" class="modal-trigger" id="RespondMessage'.$row['id'].'" href="#respond-modal'.$row['id'].'">Svar</a>            
             <input type="hidden" id="msg_id'.$row['id'].'" value="'.$row['id'].'">
-            <div id="message-modal'.$row['id'].'" class="modal">
+            <div id="message-modal'.$row['id'].'" class="modal message-modal">
                 <div class="modal-content">
                 <h4>Besked fra '. getFromName($dbh, $row['msg_from_id']) .'</h4>
                 <p>'.$row['msg_body'].'</p>
@@ -171,12 +178,50 @@ if ($stmt->rowCount() > 0) {
                         </div>
                     </div>
             </td>
+            <td>
+            '. (($row['msg_read'] == 1) ? "Læst":"Ikke læst") .'
+            </td>
         </tr>
+    
 
         <script type="text/javascript">
         $(document).ready(function() {
 
-        $("#message-modal'.$row['id'].'").modal();
+        function readMessageModal(){
+            $("#message-modal'.$row['id'].'").modal();
+        }
+
+
+        function unreadMessageModal() {
+            $("#message-modal'.$row['id'].'").modal({
+                complete: function() {
+    
+                    var msg_id = document.getElementById("msg_id'.$row['id'].'").value;
+    
+                    var dataString = "message_read_id=" + msg_id;
+    
+                    $.ajax({
+                        type: "POST",
+                        url: "read-message.php",
+                        data: dataString,
+                        cache: false,
+                        success: function(data) {
+                          console.log(data);
+                        },
+                        error: function(err) {
+                          
+                        }
+                      });
+                }
+            });
+        }
+        
+
+        '. (($row['msg_read'] == 1) ? "readMessageModal()":"unreadMessageModal()" ) .'
+        
+
+        
+        
 
         $("#respond-modal'.$row['id'].'").modal();
 
@@ -279,6 +324,7 @@ $(document).ready(function() {
     //     $('.message-body').toggle("slide", { direction: "up" }, 1000);
     // });
 
+    
     
 	$(".toggle-body").click(function(){
 		$(this).next(".message-body").toggle()
