@@ -29,6 +29,25 @@
 </head>
 <?php
 $user = new User(); // current user
+
+if($user->isLoggedIn()) {
+  $data = $user->data();
+
+  $dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+  $messageCount = $dbh->query('SELECT COUNT(msg_to_id) as msgCount FROM Messages WHERE msg_to_id = '.$data->id.' AND msg_read = 0')->fetch(); 
+  if ($messageCount['msgCount'] == 0) {
+    $messageCount = "displayNone";
+  } else if ($messageCount['msgCount'] == 1) {
+      echo '1 ulæst besked';
+      $messageCount = "1";
+  } else {
+      $messageCount = $messageCount['msgCount'];
+  }
+
+}
+
+        
+      
 ?>
 
 <style>
@@ -70,7 +89,10 @@ span.label {
             ?> 
             <li><a href="profil" id="header-view-profiles"><i class="fa fa-search header-icons"></i>    Gennemse profiler</a></li>
             <li><a href="opdater"><i class="fa fa-user header-icons"></i>    <?php echo escape($user->data()->username); ?></a></li>
-            <li><a href="beskeder"><i class="fa fa-comments header-icons"></i>    Beskeder</a></li>         
+
+            
+            <li><a href="beskeder"><i class="fa fa-comments header-icons"></i>    Beskeder<span id="span-message-count" class="label blue white-text"><?php echo $messageCount ?></span></a></li>  
+                   
             <li><a id="my-dropdown" class="dropdown-trigger" href="#!" data-activates="dropdown1" data-target="dropdown1"><i class="fa fa-cogs header-icons"></i><i class="material-icons right header-material-arrow">arrow_drop_down</i></a></li>
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content my-dropdown-content'>
@@ -100,6 +122,10 @@ span.label {
 $(document).ready(function() {
 
   //$("#my-dropdown").dropdown();
+
+  if ($("#span-message-count").text() == "displayNone") {
+    $("#span-message-count").css("display", "none");
+  }
 
   
   $('#my-dropdown').dropdown({
