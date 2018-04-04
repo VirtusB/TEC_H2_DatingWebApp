@@ -177,5 +177,10 @@ AND DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' and '.$maxAge.'
 AND sex BETWEEN '.$sexSel1.' and '.$sexSel2.'
 AND     Users.regionid = 2
 AND     RS_ProfileInterests.interestId IN(1,2,3)
+
+SELECT RS_ProfileInterests.userId, RS_ProfileInterests.interestId, Interests.interestName
+FROM RS_ProfileInterests
+LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
+order by userid
 */
 
