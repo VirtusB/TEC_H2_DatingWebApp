@@ -1,6 +1,9 @@
 <?php
 // init.php inkluderes 1 gang på alle sider, fungerer som en initializer
 
+setlocale(LC_TIME, "da_DK");
+date_default_timezone_set('Europe/Copenhagen');
+
 session_start(); // start sessionen
 
 // sæt vores globale konfiguration

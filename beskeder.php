@@ -86,8 +86,9 @@ if ($stmt->rowCount() > 0) {
             <td>
             <a class="modal-trigger" href="#message-modal'.$row['id'].'">Vis</a>
             <a style="margin-left:3%;" class="" id="DeleteMessage'.$row['id'].'" href="#">Slet</a>
+            <a style="margin-left:3%;" class="modal-trigger" id="RespondMessage'.$row['id'].'" href="#respond-modal'.$row['id'].'">Svar</a>            
             <input type="hidden" id="msg_id'.$row['id'].'" value="'.$row['id'].'">
-            <div id="message-modal'.$x.'" class="modal">
+            <div id="message-modal'.$row['id'].'" class="modal">
                 <div class="modal-content">
                 <h4>Besked fra '. getFromName($dbh, $row['msg_from_id']) .'</h4>
                 <p>'.$row['msg_body'].'</p>
@@ -96,7 +97,26 @@ if ($stmt->rowCount() > 0) {
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
                 </div>
             </div>
-            
+            <div id="respond-modal'.$row['id'].'" class="modal">
+                        <div class="modal-content">
+                        <h4 style="text-align: center;" class="profile-message-h4-'.$row['id'].'">
+                        <script>
+                        $(document).ready(function() {
+
+
+                        $(".profile-message-h4-'.$row['id'].'").text("Send en besked til '. getFromName($dbh, $row['msg_from_id']) .'");                                               
+                        });
+                        </script>
+                        </h4>
+                        <textarea id="profileMessageInput'.$row['id'].'" class="materialize-textarea validate" data-length="150"></textarea>
+
+                       <p id="success-message-sent"></p>
+                        </div>
+                        <div class="modal-footer">
+                        <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a> -->
+                        <button id="sendTheMessage'.$row['id'].'" class="waves-effect waves-green btn-flat">Send</button>
+                        </div>
+                    </div>
             </td>
         </tr>
 
@@ -104,6 +124,52 @@ if ($stmt->rowCount() > 0) {
         $(document).ready(function() {
 
         $("#message-modal'.$row['id'].'").modal();
+
+        $("#respond-modal'.$row['id'].'").modal();
+
+        $("#sendTheMessage'.$row['id'].'").on("click", function(e) { 
+            profileSendMessage'.$row['id'].'();
+        });
+
+
+        function encodeHTML(s) {
+            return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+        }
+        
+            function profileSendMessage'.$row['id'].'() {
+            var message = encodeHTML(document.getElementById("profileMessageInput'.$row['id'].'").value);
+            var msg_to_id = '.$row['msg_from_id'].';
+            var msg_from_id = '.$data->id.';
+        
+            //var dataString = "message_to_pass=" + message;
+            var dataString = {
+                "message_to_pass" : message,
+                "message_to_user" : msg_to_id,
+                "message_from_user" : msg_from_id
+            };
+            if (message == "") {
+                alertify.alert("Fejl", "Du er nød til at indtaste en besked", function() {
+                    alertify.message("OK");
+                });
+            } else {
+              $.ajax({
+                type: "POST",
+                url: "pass-message.php",
+                data: dataString,
+                cache: false,
+                success: function(data) {
+                  $("#success-message-sent").html(data);
+                  $("#respond-modal'.$row['id'].'").modal("close");
+                },
+                error: function(err) {
+                  alert(err);
+                }
+              });
+            }
+            return false;
+        }
+
+
 
         $("#DeleteMessage'.$row['id'].'").on("click", function(e) {
             e.preventDefault();

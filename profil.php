@@ -426,7 +426,7 @@ echo '<p>', $e->getMessage(), '</p>';
                         <p id="success-message"></p>
                         <script>
                         function encodeHTML(s) {
-                            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+                            return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
                         }
 
                         function profileSendMessage() {
@@ -443,7 +443,7 @@ echo '<p>', $e->getMessage(), '</p>';
                             if (message == "") {
                                 alertify.alert('Fejl', "Du er nød til at indtaste en besked", function() {
                                     alertify.message("OK");
-                                });$(".table-row-'.$message_to_delete.'").fadeOut("slow");
+                                });
                             } else {
                               $.ajax({
                                 type: "POST",
