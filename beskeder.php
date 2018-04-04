@@ -4,6 +4,9 @@ include 'includes/components/header.php';
 
 echo '<main>';
 
+$dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+
 if(!$user->isLoggedIn()) {
     Redirect::to('forside');
 }
@@ -23,12 +26,63 @@ if(!$user->isLoggedIn()) {
     margin-top: 5%;
 }
 
+#inbox-control {
+    text-align: center;
+}
+
+#inbox-message-count {
+    color: #039be5;
+}
+
 </style>
 
 <div class="row">
 <div class="col s2"></div>
 <div class="col s8 beskeder-div">
-<h3 class="message-h3">Beskeder</h3>
+<h3 class="message-h3" id="inbox-message-count"><?php
+$messageCount = $dbh->query('SELECT COUNT(msg_to_id) as msgCount FROM Messages WHERE msg_to_id = '.$data->id.'')->fetch();
+if ($messageCount['msgCount'] == 0) {
+    echo '0 beskeder';
+} else if ($messageCount['msgCount'] == 1) {
+    echo '1 besked';
+} else {
+    echo $messageCount['msgCount'], ' beskeder';
+}
+?></h3>
+<div id="inbox-control">
+<button id="delete-all-messages" class="btn">Tøm indbakke</button>
+<p id="ajax-response"></p>
+<script>
+$("#delete-all-messages").on("click", function(e){
+e.preventDefault();
+alertify.confirm('Tøm indbakke', 'Er du sikker?', 
+function(){ 
+    //alertify.success('Sletter alle beskeder');
+    var currUserId = {"currUserId" : <?php echo $data->id; ?>};
+    $.ajax({
+        type: "POST",
+        url: "empty-inbox.php",
+        data: currUserId,
+        cache: false,
+        success: function(data) {
+            $("#ajax-response").html(data);
+            $("#message-table-body").fadeOut("slow");
+            $("#inbox-message-count").html("0 beskeder");
+        },
+        error: function(err) {
+            alert(err);
+        }
+ });
+
+    }, 
+function(){ 
+    alertify.error('Annulleret')
+    }).set('labels', {ok: 'Ja!', cancel: 'Annuller'});
+
+});
+</script>
+</div>
+
 <p style="text-align: center;" id="deleted-success-message"></p>
 
 <table class="highlight centered">
@@ -40,9 +94,8 @@ if(!$user->isLoggedIn()) {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="message-table-body">
 <?php 
-$dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 // Få mængden af beskeder til brugeren
 $stmt = $dbh->prepare('

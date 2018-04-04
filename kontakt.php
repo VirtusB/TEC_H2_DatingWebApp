@@ -22,7 +22,7 @@ echo '<main>';
 <div class="container">
     <div class="row">
         <div class="col m10 offset-m1 s12">
-            <h2 style="color: #535151" class="center-align">Hvad kan vi hjælpe med?</h2>
+            <h2 style="color: #535151; margin-top: 9%;" class="center-align">Hvad kan vi hjælpe med?</h2>
             <div class="row">
                 <form method="post" id="contact-form" class="col s12">
                     <div class="row">

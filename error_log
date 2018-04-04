@@ -2695,3 +2695,6 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/virtusbc/dating.virtusb.com/saveData.php on line 23
+[04-Apr-2018 09:05:23 Europe/London] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/virtusbc/dating.virtusb.com/profil.php on line 260
+[04-Apr-2018 10:54:00 Europe/London] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: no parameters were bound in /home/virtusbc/dating.virtusb.com/pass-message.php on line 33
+[04-Apr-2018 15:46:20 Europe/Copenhagen] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/virtusbc/dating.virtusb.com/beskeder.php on line 49
