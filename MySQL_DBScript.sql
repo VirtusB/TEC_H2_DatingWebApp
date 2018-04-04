@@ -132,56 +132,50 @@ INSERT INTO Users (username, userpassword, name, joined, usergroup, countryId, r
 /*
 -- empty Region, empty Interest
 
-SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+SELECT id, name, imagefile, joined, profileBio, city, Countries.countryName, Regions.regionName, sex 
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
-LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 18 and 35
-AND     NOT (id=1)
-AND     sex BETWEEN 0 and 1
-AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
+LEFT JOIN Countries ON Countries.countryID = Users.countryId
+WHERE NOT (id= ' . $data->id . ')
+AND id NOT IN(SELECT match_to_id FROM Matches WHERE match_from_id = 1)
+AND DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' and '.$maxAge.'
+AND sex BETWEEN '.$sexSel1.' and '.$sexSel2.'
 
 -- Empty Region, not empty Interest
 
-SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+SELECT id, name, imagefile, joined, profileBio, city, Countries.countryName, Regions.regionName, sex 
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
-LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
-LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
-LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
-AND     NOT (id=1)
-AND     sex BETWEEN 0 and 1
-AND     RS_ProfileInterests.interestId IN(1,2,3,)
-AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
+LEFT JOIN Countries ON Countries.countryID = Users.countryId
+WHERE NOT (id= ' . $data->id . ')
+AND id NOT IN(SELECT match_to_id FROM Matches WHERE match_from_id = 1)
+AND DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' and '.$maxAge.'
+AND sex BETWEEN '.$sexSel1.' and '.$sexSel2.'
+AND RS_ProfileInterests.interestId IN(1,2,3,)
 
 -- Not empty Region, Empty Interest
 
-SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+SELECT id, name, imagefile, joined, profileBio, city, Countries.countryName, Regions.regionName, sex 
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
-LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
-LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
-LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
-AND     NOT (id=1)
-AND     sex BETWEEN 0 and 1
+LEFT JOIN Countries ON Countries.countryID = Users.countryId
+WHERE NOT (id= ' . $data->id . ')
+AND id NOT IN(SELECT match_to_id FROM Matches WHERE match_from_id = 1)
+AND DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' and '.$maxAge.'
+AND sex BETWEEN '.$sexSel1.' and '.$sexSel2.'
 AND     Users.regionid = 1
-AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
 
 -- Not empty Region, Not empty Interest
 
-SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex
+SELECT id, name, imagefile, joined, profileBio, city, Countries.countryName, Regions.regionName, sex 
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
-LEFT JOIN RS_ProfileInterests ON RS_ProfileInterests.userId = Users.id
-LEFT JOIN Interests ON Interests.interestID = RS_ProfileInterests.interestId
-LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN 0 and 99
-AND     NOT (id=1)
-AND     sex BETWEEN 0 and 1
+LEFT JOIN Countries ON Countries.countryID = Users.countryId
+WHERE NOT (id= ' . $data->id . ')
+AND id NOT IN(SELECT match_to_id FROM Matches WHERE match_from_id = 1)
+AND DATEDIFF(NOW(),age)/365 BETWEEN '.$minAge.' and '.$maxAge.'
+AND sex BETWEEN '.$sexSel1.' and '.$sexSel2.'
 AND     Users.regionid = 2
 AND     RS_ProfileInterests.interestId IN(1,2,3)
-AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
 */
 
