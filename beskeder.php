@@ -136,10 +136,13 @@ if ($stmt->rowCount() > 0) {
         $msg_date = strtotime($row['msg_date']);
         $msg_date = date("d/m/y H:i:s", $msg_date);
 
-        
+        //table-row-'.$row['id']
+
+        $specialId = '   table-row-'.$row['id'].'    ';
 
         echo '
-        <tr class= '. (($row['msg_read'] == 1) ?'"message_read"':"") .'  class="table-row-'.$row['id'].'">
+        <input class="msgIdContainer" type="hidden" value="table-row-'.$row['id'].' ">
+        <tr id="table-row-'.$row['id'].'" class='.   (($row['msg_read'] == 1) ? ' message_read' : '')    .'>
             <input type="hidden" id="msg_from_id" value="'. $row['msg_from_id'] .'">
             <td>'. getFromName($dbh, $row['msg_from_id']) .'</td>
             <td>'. $msg_date .'</td>
@@ -282,7 +285,7 @@ if ($stmt->rowCount() > 0) {
                 cache: false,
                 success: function(data) {
                   $("#deleted-success-message").html(data);
-                  $(".table-row-'.$row['id'].'").fadeOut("slow");
+                  $("#table-row-'.$row['id'].'").fadeOut("slow");
                   alertify.notify("Besked slettet", "custom", 4, function(){console.log("dismissed");});                  
                 },
                 error: function(err) {
