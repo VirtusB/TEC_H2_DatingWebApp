@@ -181,7 +181,7 @@ if ($stmt->rowCount() > 0) {
                         </div>
                     </div>
             </td>
-            <td>
+            <td id="read-status-'.$row['id'].'">
             '. (($row['msg_read'] == 1) ? "Læst":"Ikke læst") .'
             </td>
         </tr>
@@ -190,11 +190,12 @@ if ($stmt->rowCount() > 0) {
         <script type="text/javascript">
         $(document).ready(function() {
 
+        // readMessageModal kører hvis beskeden ER læst
         function readMessageModal(){
             $("#message-modal'.$row['id'].'").modal();
         }
 
-
+        // unreadMessageModal kører hvis beskeden IKKE er læst
         function unreadMessageModal() {
             $("#message-modal'.$row['id'].'").modal({
                 complete: function() {
@@ -210,6 +211,8 @@ if ($stmt->rowCount() > 0) {
                         cache: false,
                         success: function(data) {
                           console.log(data);
+                          $("#table-row-'.$row['id'].'").detach().appendTo("#message-table-body");
+                          $("#read-status-'.$row['id'].'").text("Læst");
                         },
                         error: function(err) {
                           

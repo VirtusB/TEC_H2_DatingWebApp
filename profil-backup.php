@@ -130,8 +130,6 @@ $total = $dbh->query('
     WHERE NOT(id = ' . $data->id . ')
 ')->fetchColumn();
 
-
-
 // How many items to list per page
 $limit = 1;
 

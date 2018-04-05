@@ -20,6 +20,8 @@ div.row.login-row, div.row.update-information-row, div.row.change-password-row{m
 #message-modal{transform:translateY(50%) !important;}
 .profile-row{margin-top:6%;}
 .profile-arrows{font-size:4rem;color:#333;}
+#signup-form{margin-top: 2%;}
+#login-form{margin-top: 3%;}
 .profile-thumbs{font-size: 5rem;color:#039be5;}
 .profile-arrows:hover{color:#ee6e73;}
 .filter-search-btn{float:right;}
