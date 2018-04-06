@@ -112,248 +112,6 @@ if(!$user->isLoggedIn()) {
         </form>
 
         <div class="divider profile-divider"></div>
-
-        <?php
-
-// TODO, denne forbindelse skal ændres til at bruge DB klassen
-$dbh = new PDO('mysql:host=127.0.0.1;dbname=virtusbc_tec-dating', 'virtusbc_h2_user', 'rootpwdating', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-
-try {
-
-// Find out how many items are in the table
-// medtag ikke brugeren's id som er logget ind
-$total = $dbh->query('
-    SELECT
-        COUNT(*)
-    FROM
-        Users
-    WHERE NOT(id = ' . $data->id . ')
-')->fetchColumn();
-
-
-
-// How many items to list per page
-$limit = 1;
-
-// How many pages will there be
-$pages = ceil($total / $limit);
-
-// What page are we currently on?
-$page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
-    'options' => array(
-        'default'   => 1,
-        'min_range' => 1,
-    ),
-)));
-
-// Calculate the offset for the query
-$offset = ($page - 1)  * $limit;
-
-// Some information to display to the user
-$start = $offset + 1;
-$end = min(($offset + $limit), $total);
-
-// The "back" link
-$prevlink = ($page > 1) ? '<a id="previous-profile-php" href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&lsaquo;</span>';
-
-// The "forward" link
-$nextlink = ($page < $pages) ? '<a id="next-profile-php" href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a>' : '<span class="disabled">&raquo;</span>';
-
-// Display the paging information
-echo '<div style="display:none;" id="paging"><p>', $prevlink, '  ' ,$nextlink, ' </p></div>';
-
-// Prepare the paged query
-// tilføj WHERE NOT id, $data-id er ligmed den nuværende bruger's id, brugeren som er logget ind
-
-// gem POST data i variabler
-$sexSelectPost = $_POST['sex_select'];
-$regionSelectPost = $_POST['region_select'];
-$interestSelectPost = $_POST['interest_select'];
-$minAgePost = $_POST['ageMin'];
-$maxAgePost = $_POST['ageMax'];
-
-
-    if(empty($sexSelectPost)) {
-        $sexSel1 = 0;
-        $sexSel2 = 1;
-    } else if ($sexSelectPost == 1) {
-        $sexSel1 = 1;
-        $sexSel2 = 1;
-    } else if ($sexSelectPost == 0) {
-        $sexSel1 = 0;
-        $sexSel2 = 0;
-    }
-
-
-if (empty($_POST)) {
-    $stmt = $dbh->prepare('
-    SELECT
-        *
-    FROM
-        Users
-        LEFT JOIN Regions ON Regions.regionID = Users.regionId
-        LEFT JOIN Matches ON Users.id = Matches.match_from_id
-        WHERE
-        NOT(id = ' . $data->id . ')
-        AND     (Matches.match_from_id IS NULL OR Matches.status = 0)
-    ORDER BY
-        id
-    LIMIT
-        :limit
-    OFFSET
-        :offset
-');
-} else if (empty($regionSelectPost) && empty($interestSelectPost)) {
-    
-    $stmt = $dbh->prepare('
-    SELECT DISTINCT id, name, imagefile, joined, profileBio, city, Users.countryId, Users.regionId, sex, age
-FROM Users
-LEFT JOIN Regions ON Regions.regionID = Users.regionId
-LEFT JOIN Matches ON Users.id = Matches.match_from_id
-WHERE   DATEDIFF(NOW(),age)/365 BETWEEN '.$minAgePost.' AND '.$maxAgePost.'
-AND     NOT(id = ' . $data->id . ')
-AND     sex BETWEEN '.$sexSel1.' AND '.$sexSel2.'
-AND    (Matches.match_from_id IS NULL OR Matches.status = 0)
-    ORDER BY
-        name
-    LIMIT
-        :limit
-    OFFSET
-        :offset
-');
-} else if (empty($regionSelectPost) && !empty($interestSelectSession)) {
-
-
-} else if (empty($interestSelectSession) && !empty($regionSelectSession)) {
-
-
-} else if (!empty($regionSelectSession) && !empty($interestSelectSession)) {
-    
-
-}
-
-
-
-// Bind the query params
-$stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
-
-setlocale(LC_ALL, 'danish');
-
-// få navnet på landet
-function getCountry($dbh, $userid) {
-    $sql = 'SELECT countryName FROM Countries WHERE Countries.countryID IN (SELECT countryId FROM Users WHERE id = '. $userid .')';
-    foreach ($dbh->query($sql) as $row) {
-        return $row['countryName'];
-    }
-}
-
-// få navnet på regionen
-function getRegion($dbh, $userid) {
-    $sql = 'SELECT regionName FROM Regions WHERE Regions.regionID IN (SELECT regionId FROM Users WHERE id = '. $userid .')';
-    foreach ($dbh->query($sql) as $row) {
-        return $row['regionName'];
-    }
-}
-
-
-if ($page < $pages) {
-    echo '<script type="text/javascript">$(document).ready(function(){
-        $("#previous-link").attr("href", $("#previous-profile-php").attr("href"));
-        $("#next-link").attr("href", $("#next-profile-php").attr("href"));
-    })</script>';
-} else {
-    echo '<script type="text/javascript">$(document).ready(function(){
-        $("#next-link").click(function(e) {
-            e.preventDefault();
-            alertify.alert("Fejl", "Der er ikke flere profiler", function() {
-                alertify.message("Kom tilbage senere");
-              });
-        });
-
-        $("#previous-link").attr("href", $("#previous-profile-php").attr("href"));
-        $("#next-profile-btn").attr("title", "Ikke flere profiler");
-        $("#next-profile-btn").css("color", "#a59191");
-        
-        
-    })</script>';
-}
-
-
-
-
-
-// Do we have any results?
-if ($stmt->rowCount() > 0) {
-    // Define how we want to fetch the results
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $iterator = new IteratorIterator($stmt);
-
-    // Display the results
-    foreach ($iterator as $row) {
-        $birth_date = $row['age'];
-        $now = date("Y-m-d");
-
-        $birth_date = strtotime($birth_date);
-        $now = strtotime($now);
-
-
-        //$age= date("Y") - date("Y", strtotime($birth_date)); backup
-
-        $age = floor(($now - $birth_date) / 3600 / 24 / 365.25); 
-
-        $joined = $row['joined'];
-        $userjoined =  strftime("%d. %B, %Y", strtotime($joined));
-
-        $country = getCountry($dbh, $row['id']);
-        $region = getRegion($dbh, $row['id']);
-        
-        $userInterests = DB::getInstance()->action('SELECT interestName', 'Interests JOIN RS_ProfileInterests ON Interests.interestID = RS_ProfileInterests.interestId', array('userId', '=', ' '. $row['id'] .' '))->results();
-        
-        $userInterestsSimple = array();
-        foreach($userInterests as $userInterest) {
-           $userInterestsSimple[] = $userInterest->interestName;
-         }
-
-         foreach ($userInterestsSimple as $simpleInterest) {
-             echo '<li style="display: none;" class="single-user-interest">'. $simpleInterest .'</li>';
-             echo '<script type="text/javascript">$(document).ready(function(){
-                $(".interests-ul").append($(".single-user-interest"));
-              })</script>';
-         }
-                      
-
-        echo '<script type="text/javascript">$(document).ready(function(){           
-            $(".name-paragraph").append(" ' . $row['name'] . ", " . $age . " år" .' ");
-            $(".profile-image").attr("src", "data:image/gif;base64,' . $row['imageFile'] .'");
-            $("#user-since").append("' . "Bruger siden " . $userjoined .'");
-            $(".profile-bio").append("' . $row['profileBio'] .'");
-            $(".message-user-btn").append("' . strtok($row['name'], " ") .'");
-            $(".user-interests-h6").prepend("' . strtok($row['name'], " ") .'");            
-            $(".user-location-h6").prepend("' . strtok($row['name'], " ") .'");            
-            $("#user-city").append("' . $row['city'] .'");
-            $("#user-country-region").prepend("' . $country .'");
-            $("#user-country-region").append("' . $region .'");
-            $("#user-id-to-message").val("' . $row['id'] .'");
-            $(".single-user-interest").css("display", "list-item");
-            
-                 
-        })</script>';
-
-        
-    }
-
-} else {
-    
-}
-
-} catch (Exception $e) {
-echo '<p>', $e->getMessage(), '</p>';
-}
-
-?>
-
        <div class="row view-profiles valign-wrapper center-align">
        <div class="col s1">
        <a id="previous-link" href="">
@@ -368,21 +126,55 @@ echo '<p>', $e->getMessage(), '</p>';
             <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
             <script>
             $(document).ready(function() {
-                var link = $("#next-link").attr("href");
-                var id = link.replace(/[^0-9]/g,'');
-                console.log(id);
-                $("#dislike-link").on("click", function(event) {
-                    event.preventDefault();
-
-                    $.ajax({
+                //var link = $("#next-link").attr("href");
+                //var id = link.replace(/[^0-9]/g,'');
+                //console.log(id);
+                $.ajax({
                         url:"fetch-profile.php",
                         method:"POST",
-                        data: {id:id},
+                        dataType:'json',
+                        //data: {type:standard},
                         success:function(data) {
-                            console.log(data);
+                            //console.log(data);
+                            //console.table(data);
+                            var profileCount = data.Users.length;
+                            $(".name-paragraph").text(data.Users[0].name + ', ' + data.Users[0].age + ' år');  
+                            $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[0].imageFile}`);  
+                            $("#user-since").text(`Bruger siden ${data.Users[0].joined}`);                        
+                            var i = 0;
+                            
+                            $("#next-profile-btn").on("click", function(event) {
+                                event.preventDefault();
+                                i++;
+                                if(i > profileCount - 1) {
+                                    alert("ikke flere profiler");
+                                    return false;
+                                } else {
+                                    $(".name-paragraph").text(data.Users[i].name + ', ' + data.Users[i].age + ' år');
+                                    $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[i].imageFile}`);
+                                    $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);
+                                }
+                            });
+                            
+                            $("#previous-profile-btn").on("click", function(event) {
+                                event.preventDefault();
+                                i--;
+                                if (i < 0) {
+                                    i++;
+                                    alert("ikke flere profiler");
+                                    return false;
+                                } else {
+                                    $(".name-paragraph").text(data.Users[i].name + ', ' + data.Users[i].age + ' år'); 
+                                    $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[i].imageFile}`);
+                                    $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);                                  
+                                }
+                            });
+
+
                         }
                     });
-                });
+
+               
             });
             
             </script>
@@ -394,33 +186,6 @@ echo '<p>', $e->getMessage(), '</p>';
             <div class="col s2">
             <a id="like-link" href="">
             <i id="like-profile-btn" title="Synes godt om" class="fa fa-thumbs-up profile-thumbs"></i>
-            <script>
-            $(document).ready(function() {
-                $("#like-link").on("click", function(event) {
-                    event.preventDefault();
-                    
-                    load_data();
-
-                    function load_data(page) {
-                        $.ajax({
-                            url:"profile-pagination.php",
-                            method:"POST",
-                            data:{page:page},
-                            success:function(data) {
-                                //console.log(data); // data skal indeholde alt data om den nuværende profil
-                                $("#ajax-profile-data").html(data);
-                            }
-                        })
-                    }
-                    
-                    $(document).on("click", ".pagination_link", function() {
-                        var page = $(this).attr("id");
-                        load_data(page);
-                    });
-
-                });
-            });
-            </script>
             </a>
             </div>
         </div>
