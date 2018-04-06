@@ -135,12 +135,33 @@ if(!$user->isLoggedIn()) {
                         dataType:'json',
                         //data: {type:standard},
                         success:function(data) {
-                            //console.log(data);
-                            //console.table(data);
                             var profileCount = data.Users.length;
                             $(".name-paragraph").text(data.Users[0].name + ', ' + data.Users[0].age + ' år');  
                             $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[0].imageFile}`);  
-                            $("#user-since").text(`Bruger siden ${data.Users[0].joined}`);                        
+                            $("#user-since").text(`Bruger siden ${data.Users[0].joined}`);   
+                            $(".profile-bio").text(data.Users[0].profileBio);
+                            $("#user-id-to-message").val(data.Users[0].id);
+
+                            var nameParagraph = data.Users[0].name;
+                            nameParagraph = nameParagraph.split(","); 
+                            $(".profile-message-h4").text("Send en besked til " + nameParagraph[0]);
+                            
+                            var interesser = "";
+                            data.Users[0].interests.forEach(function(element) {
+                                interesser += `<li>${element}</li>`;
+                            });
+                            $(".interests-ul").html(interesser);
+
+                            var name = data.Users[0].name;
+                            var firstName = name.split(" ", 1);
+                            $(".message-user-btn").text(`Chat med ${firstName}`);
+
+                            $(".user-location-h6").text(`${firstName}'s placering`);
+                            $(".user-interests-h6").text(`${firstName}'s interesser`);
+                            
+
+                            $("#user-country-region").text(`${data.Users[0].regionName}, ${data.Users[0].countryName}`);
+
                             var i = 0;
                             
                             $("#next-profile-btn").on("click", function(event) {
@@ -153,6 +174,27 @@ if(!$user->isLoggedIn()) {
                                     $(".name-paragraph").text(data.Users[i].name + ', ' + data.Users[i].age + ' år');
                                     $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[i].imageFile}`);
                                     $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);
+                                    $(".profile-bio").text(data.Users[i].profileBio);
+                                    $("#user-id-to-message").val(data.Users[i].id);
+
+                                    var nameParagraph = data.Users[i].name;
+                                    nameParagraph = nameParagraph.split(","); 
+                                    $(".profile-message-h4").text("Send en besked til " + nameParagraph[0]);
+                                    
+                                    var interesser = "";
+                                    data.Users[i].interests.forEach(function(element) {
+                                        interesser += `<li>${element}</li>`;    
+                                    });
+                                    $(".interests-ul").html(interesser);
+
+                                    var name = data.Users[i].name;
+                                    var firstName = name.split(" ", 1);
+                                    $(".message-user-btn").text(`Chat med ${firstName}`);
+
+                                    $(".user-location-h6").text(`${firstName}'s placering`);
+                                    $(".user-interests-h6").text(`${firstName}'s interesser`);
+
+                                    $("#user-country-region").text(`${data.Users[i].regionName}, ${data.Users[i].countryName}`);
                                 }
                             });
                             
@@ -166,7 +208,31 @@ if(!$user->isLoggedIn()) {
                                 } else {
                                     $(".name-paragraph").text(data.Users[i].name + ', ' + data.Users[i].age + ' år'); 
                                     $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[i].imageFile}`);
-                                    $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);                                  
+                                    $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);  
+                                    $(".profile-bio").text(data.Users[i].profileBio);  
+                                    $("#user-id-to-message").val(data.Users[i].id);
+                                    
+                                    var nameParagraph = data.Users[i].name;
+                                    nameParagraph = nameParagraph.split(","); 
+                                    $(".profile-message-h4").text("Send en besked til " + nameParagraph[0]);
+                                    
+                                    //interesser
+                                    var interesser = "";
+                                    data.Users[i].interests.forEach(function(element) {  
+                                        interesser += `<li>${element}</li>`;
+                                    });
+                                    $(".interests-ul").html(interesser);
+                                    
+                                    // fornavn på chat popup modal
+                                    var name = data.Users[i].name;
+                                    var firstName = name.split(" ", 1);
+                                    $(".message-user-btn").text(`Chat med ${firstName}`);
+                                    
+                                    //region og land
+                                    $(".user-location-h6").text(`${firstName}'s placering`);
+                                    $(".user-interests-h6").text(`${firstName}'s interesser`);
+                                    
+                                    $("#user-country-region").text(`${data.Users[i].regionName}, ${data.Users[i].countryName}`);
                                 }
                             });
 
@@ -214,15 +280,6 @@ if(!$user->isLoggedIn()) {
                     <div id="message-modal" class="modal">
                         <div class="modal-content">
                         <h4 class="profile-message-h4">
-                        <script>
-                        $(document).ready(function() {
-
-
-                        var nameParagraph = $(".name-paragraph").text();
-                        nameParagraph = nameParagraph.split(","); 
-                        $(".profile-message-h4").text("Send en besked til " + nameParagraph[0])                                               
-                        });
-                        </script>
                         </h4>
                         <textarea id="profileMessageInput" class="materialize-textarea validate" data-length="150"></textarea>
                         <p id="success-message"></p>

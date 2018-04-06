@@ -38,7 +38,6 @@ if($user->isLoggedIn()) {
   if ($messageCount['msgCount'] == 0) {
     $messageCount = "displayNone";
   } else if ($messageCount['msgCount'] == 1) {
-      echo '1 ulæst besked';
       $messageCount = "1";
   } else {
       $messageCount = $messageCount['msgCount'];

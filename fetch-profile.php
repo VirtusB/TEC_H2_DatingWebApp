@@ -8,9 +8,10 @@ $userData = $user->data();
 $conn = mysqli_connect("127.0.0.1","virtusbc_h2_user","rootpwdating","virtusbc_tec-dating");
 mysqli_set_charset($conn,"utf8");
 
+mysqli_query($conn, 'set lc_time_names = "da_DK";');
+
 $userQuery = '
-SET lc_time_names = "da_DK";
-SELECT id, name, imageFile, DATE_FORMAT(joined, "%d. %m %y") as joined, profileBio, city, Countries.countryName, Regions.regionName, sex, FLOOR(DATEDIFF(NOW(),age)/365) as age
+SELECT id, name, imageFile, DATE_FORMAT(joined, "%d. %M %Y") as joined, profileBio, city, Countries.countryName, Regions.regionName, sex, FLOOR(DATEDIFF(NOW(),age)/365) as age
 FROM Users
 LEFT JOIN Regions ON Regions.regionID = Users.regionId
 LEFT JOIN Countries ON Countries.countryID = Users.countryId
