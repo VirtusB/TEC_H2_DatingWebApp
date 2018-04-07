@@ -52,7 +52,6 @@ if($user->isLoggedIn()) {
 <style>
 .header-icons {
   font-size: 1rem;
-  vertical-align: bottom;
 }
 
 .header-material-arrow {
@@ -87,6 +86,7 @@ span.label {
         if($user->isLoggedIn()) {
             ?> 
             <li><a href="profil" id="header-view-profiles"><i class="fa fa-search header-icons"></i>    Gennemse profiler</a></li>
+            <li><a href="matches"><i class="fa fa-star header-icons"></i>    Matches</a></li>
             <li><a href="opdater"><i class="fa fa-user header-icons"></i>    <?php echo escape($user->data()->username); ?></a></li>
 
             

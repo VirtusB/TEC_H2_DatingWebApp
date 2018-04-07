@@ -116,24 +116,12 @@ if(!$user->isLoggedIn()) {
        <div class="col s1">
        <a id="previous-link" href="">
         <i id="previous-profile-btn" title="Forrige profil" class="fa fa-arrow-left profile-arrows"></i>
-        </a>
-        </div>
-
-        <div class="col s10">
-        <div class="row profile-name-age-row">
-            <div class="col s2">
-            <a id="dislike-link" href="">
-            <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
-            <script>
+        <script>
             $(document).ready(function() {
-                //var link = $("#next-link").attr("href");
-                //var id = link.replace(/[^0-9]/g,'');
-                //console.log(id);
                 $.ajax({
                         url:"fetch-profile.php",
                         method:"POST",
                         dataType:'json',
-                        //data: {type:standard},
                         success:function(data) {
                             var profileCount = data.Users.length;
                             $(".name-paragraph").text(data.Users[0].name + ', ' + data.Users[0].age + ' år');  
@@ -141,6 +129,8 @@ if(!$user->isLoggedIn()) {
                             $("#user-since").text(`Bruger siden ${data.Users[0].joined}`);   
                             $(".profile-bio").text(data.Users[0].profileBio);
                             $("#user-id-to-message").val(data.Users[0].id);
+                            
+                            
 
                             var nameParagraph = data.Users[0].name;
                             nameParagraph = nameParagraph.split(","); 
@@ -177,6 +167,8 @@ if(!$user->isLoggedIn()) {
                                     $(".profile-bio").text(data.Users[i].profileBio);
                                     $("#user-id-to-message").val(data.Users[i].id);
 
+                                    
+
                                     var nameParagraph = data.Users[i].name;
                                     nameParagraph = nameParagraph.split(","); 
                                     $(".profile-message-h4").text("Send en besked til " + nameParagraph[0]);
@@ -195,6 +187,8 @@ if(!$user->isLoggedIn()) {
                                     $(".user-interests-h6").text(`${firstName}'s interesser`);
 
                                     $("#user-country-region").text(`${data.Users[i].regionName}, ${data.Users[i].countryName}`);
+                                    
+                                    
                                 }
                             });
                             
@@ -211,6 +205,8 @@ if(!$user->isLoggedIn()) {
                                     $("#user-since").text(`Bruger siden ${data.Users[i].joined}`);  
                                     $(".profile-bio").text(data.Users[i].profileBio);  
                                     $("#user-id-to-message").val(data.Users[i].id);
+
+                                    
                                     
                                     var nameParagraph = data.Users[i].name;
                                     nameParagraph = nameParagraph.split(","); 
@@ -237,10 +233,53 @@ if(!$user->isLoggedIn()) {
                             });
 
 
+
+                            
+
+
                         }
                     });
 
                
+            });
+            
+            </script>
+        </a>
+        </div>
+
+        <div class="col s10">
+        <div class="row profile-name-age-row">
+            <div class="col s2">
+            <a id="dislike-link" href="">
+            <i id="dislike-profile-btn" title="Synes ikke godt om" class="fa fa-thumbs-down profile-thumbs"></i>
+            <script>
+            $(document).ready(function() {
+                $("#dislike-profile-btn").on("click", function(event) {
+                            event.preventDefault();
+                            
+                            
+                            
+                            
+                            // user-id-from-message er ID'et på nuværende brugget som er logget ind
+                            // user-id-to-message er ID'et på den bruger som man p.t. ser
+                            var dataString = {
+                                "current_user_id" : $("#user-id-from-message").val(),
+                                "target_user_id" : $("#user-id-to-message").val()
+                            };
+                            
+                            $.ajax({
+                                type: "POST",
+                                url: "dislike-profile.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(data) {
+                                    $("#ajax-profile-data").html(data);
+                                    },
+                                error: function(err) {
+                                    $("#ajax-profile-data").html(data);
+                                }
+                            });                      
+                        });
             });
             
             </script>
@@ -252,6 +291,34 @@ if(!$user->isLoggedIn()) {
             <div class="col s2">
             <a id="like-link" href="">
             <i id="like-profile-btn" title="Synes godt om" class="fa fa-thumbs-up profile-thumbs"></i>
+            <script>
+            $(document).ready(function() {
+                $("#like-profile-btn").on("click", function(event) {
+                            event.preventDefault();
+                                       
+                            // user-id-from-message er ID'et på nuværende brugget som er logget ind
+                            // user-id-to-message er ID'et på den bruger som man p.t. ser
+                            var dataString = {
+                                "current_user_id" : $("#user-id-from-message").val(),
+                                "target_user_id" : $("#user-id-to-message").val()
+                            };
+                            
+                            $.ajax({
+                                type: "POST",
+                                url: "like-profile.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(data) {
+                                    $("#ajax-profile-data").html(data);
+                                    },
+                                error: function(err) {
+                                    $("#ajax-profile-data").html(data);
+                                }
+                            });                      
+                        });
+            });
+            
+            </script>
             </a>
             </div>
         </div>
@@ -313,7 +380,7 @@ if(!$user->isLoggedIn()) {
                                   $("#success-message").html(data);
                                 },
                                 error: function(err) {
-                                  alert(err);
+                                  console.log(err);
                                 }
                               });
                             }
