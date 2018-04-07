@@ -1,4 +1,12 @@
 <?php
+
+$enable_caching = false;
+
+if ($enable_caching == true && !filemtime('cache/cache.txt') < time()-1*3600) {
+    echo unserialize(file_get_contents('cache/cache.txt'));
+    return;
+}
+
 require_once 'core/init.php';
 
 $user = new User($username);
@@ -31,10 +39,6 @@ ORDER BY id
 
 $userResult = mysqli_query($conn, $userQuery);
 
-
-
-
-
 $userArray = array();
 while($row = mysqli_fetch_array($userResult)) {
 
@@ -58,5 +62,7 @@ while($row = mysqli_fetch_array($userResult)) {
         'age' => $row['age']
     );
 }
+
+file_put_contents('cache/cache.txt', serialize(json_encode(array('Users' => $userArray))));
 
 echo json_encode(array('Users' => $userArray));
