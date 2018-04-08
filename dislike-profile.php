@@ -1,5 +1,8 @@
 <?php
 
+setlocale(LC_TIME, "da_DK");
+date_default_timezone_set('Europe/Copenhagen');
+
 $conn = mysqli_connect("127.0.0.1","virtusbc_h2_user","rootpwdating","virtusbc_tec-dating");
 
 $current_user_id = $_POST['current_user_id'];

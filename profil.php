@@ -123,7 +123,7 @@ if(!$user->isLoggedIn()) {
                         method:"GET",
                         dataType:'json',
                         cache: false,
-                        success:function(data) {
+                        success:function(data) {                         
                             var profileCount = data.Users.length;
                             $(".name-paragraph").text(data.Users[0].name + ', ' + data.Users[0].age + ' år');  
                             $(".profile-image").attr("src", `data:image/jpeg;base64,${data.Users[0].imageFile}`);  
@@ -296,7 +296,7 @@ if(!$user->isLoggedIn()) {
             $(document).ready(function() {
                 $("#like-profile-btn").on("click", function(event) {
                             event.preventDefault();
-                                       
+
                             // user-id-from-message er ID'et på nuværende brugget som er logget ind
                             // user-id-to-message er ID'et på den bruger som man p.t. ser
                             var dataString = {
